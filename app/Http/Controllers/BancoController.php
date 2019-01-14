@@ -18,18 +18,18 @@ class BancoController extends Controller
 
     public function insertForm(Request $request) {
     	$data = $request->validate([
-    		'nombre'=>'required|unique:bancos,nombre',
+    		'descripcion'=>'required|unique:list_bancos,descripcion',
     		'status'=>'required',
     	]);
     	$banco = new \App\Banco;
     	$user = \Auth::user();
     	$banco->user_id = $user->id;
-    	$banco->nombre = $request->input('nombre');
+    	/*$banco->nombre = $request->input('nombre');*/
     	$banco->descripcion = $request->input('descripcion');
     	$banco->status = $request->input('status');
     	$banco->save();
     	return redirect()->route('config.bancos')->with([
-    		'message'=>$banco->nombre.' ha sido agregado correctamente'
+    		'message'=>$banco->descripcion.' ha sido agregado correctamente'
     	]);
     }
 
@@ -40,19 +40,19 @@ class BancoController extends Controller
 
     public function updateForm(Request $request) {
     	$data = $request->validate([
-    		'nombre'=>'required',
-            'nombre'=>Rule::unique('bancos', 'nombre')->ignore($request->input('banco_id')),
+    		'descripcion'=>'required',
+            'descripcion'=>Rule::unique('list_bancos', 'descripcion')->ignore($request->input('banco_id')),
     		'status'=>'required',
     	]);
     	$banco = \App\Banco::findOrFail($request->input('banco_id'));
     	$user = \Auth::user();
     	$banco->user_id = $user->id;
-    	$banco->nombre = $request->input('nombre');
+    	/*$banco->nombre = $request->input('nombre');*/
     	$banco->descripcion = $request->input('descripcion');
     	$banco->status = $request->input('status');
     	$banco->save();
     	return redirect()->route('config.bancos.update',['banco_id'=>$request->input('banco_id')])->with([
-    		'message'=>$banco->nombre.' ha sido actualizado correctamente'
+    		'message'=>$banco->descripcion.' ha sido actualizado correctamente'
     	]);
     }
 
