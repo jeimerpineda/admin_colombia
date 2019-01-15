@@ -32,13 +32,13 @@
 						<label for="descripcion" class="col-12 col-form-label">Descripción:</label>
 						<div class="col-12">
 							<textarea disabled style="resize: none;" class="form-control" name="descripcion" id="descripcion"></textarea>
-						</div> -->
-					</div>
+						</div> 
+					</div>-->
 					<div class="btn-group d-flex justify-content-center">
 						<a href="{{route('config.bancos')}}" class="btn btn-link mr-2">
 							<i class="fa fa-arrow-left"></i> Volver
 						</a>
-						<button class="btn btn-danger">
+						<button class="btn btn-danger" type="submit">
 							<i class="fa fa-times"></i> Si, continuar
 						</button>
 					</div>
