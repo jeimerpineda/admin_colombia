@@ -20,7 +20,6 @@
 						<tr>
 							<th>Id</th>
 							<th>Nombre</th>
-							<th>Descripción</th>
 							<th>Status</th>
 							<th>Creado</th>
 							<th>Modificado</th>
@@ -31,7 +30,6 @@
 						@foreach($bancos as $banco)
 							<tr>
 								<td>{{$banco->id}}</td>
-								<td>{{$banco->nombre}}</td>
 								<td>{{$banco->descripcion}}</td>
 								<td>{{($banco->status==1) ? 'Activo' : 'Inactivo'}}</td>
 								<td>{{$banco->created_at}}</td>
