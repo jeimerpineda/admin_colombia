@@ -13,9 +13,9 @@
 				<form action="{{route('config.bancos.update.form')}}" id="form_bancos" method="POST" class="col-8 offset-2">
 					@csrf
 					<div class="form-group row">
-						<label for="nombre" class="col-2 col-form-label">Nombre:</label>
+						<label for="descripcion" class="col-2 col-form-label">Nombre:</label>
 						<div class="col-10">
-							<input required type="text" name="nombre" class="form-control" value="{{$banco->nombre}}">
+							<input required type="text" name="descripcion" class="form-control" value="{{$banco->descripcion}}">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -27,12 +27,12 @@
 							</select>
 						</div>
 					</div>
-					<div class="form-group row">
+					<!-- <div class="form-group row">
 						<label for="descripcion" class="col-12 col-form-label">Descripción:</label>
 						<div class="col-12">
 							<textarea style="resize: none;" class="form-control" name="descripcion" id="descripcion">{{$banco->descripcion}}</textarea>
 						</div>
-					</div>
+					</div> -->
 					<div class="btn-group d-flex justify-content-center">
 						<a href="{{route('config.bancos')}}" class="btn btn-link mr-2">
 							<i class="fa fa-arrow-left"></i> Volver
