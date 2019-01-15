@@ -65,7 +65,7 @@ class BancoController extends Controller
     	$banco = \App\Banco::findOrFail($request->input('banco_id'));
     	$banco->delete();
     	return redirect()->route('config.bancos')->with([
-    		'message'=>$request->input('nombre').' ha sido eliminado correctamente'
+    		'message'=>$request->input('descripcion').' ha sido eliminado correctamente'
     	]);
     }
 }
