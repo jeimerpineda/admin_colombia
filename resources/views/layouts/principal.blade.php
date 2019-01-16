@@ -49,6 +49,9 @@
                                 <a class="dropdown-item" href="{{route('config.unidadmedida')}}">
                                     Unidades de Medida
                                 </a>
+                                <a class="dropdown-item" href="{{route('config.impuestos')}}">
+                                    Impuestos
+                                </a>
                             </div>
                         </li>
                     </ul>
