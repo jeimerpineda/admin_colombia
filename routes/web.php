@@ -41,11 +41,21 @@ Route::get('/config/unidadmedida/update/{unidmed_id}')->uses('UnidadMedidaContro
 Route::post('/config/unidadmedida/update/form')->uses('UnidadMedidaController@updateForm')->name('config.unidadmedida.update.form')->middleware('auth');
 Route::get('/config/unidadmedida/delete/{unidmed_id}')->uses('UnidadMedidaController@deletePage')->name('config.unidadmedida.delete')->middleware('auth');
 Route::post('/config/unidadmedida/delete/form')->uses('UnidadMedidaController@deleteForm')->name('config.unidadmedida.delete.form')->middleware('auth');
+
 //Impuestos
 Route::get('/config/impuestos/')->uses('impuestosController@index')->name('config.impuestos')->middleware('auth');
 Route::get('/config/impuestos/insert')->uses('impuestosController@insertPage')->name('config.impuestos.insert')->middleware('auth');
 Route::post('/config/impuestos/insert/form')->uses('impuestosController@insertForm')->name('config.impuestos.insert.form')->middleware('auth');
 Route::get('/config/impuestos/update/{impuesto_id}')->uses('impuestosController@updatePage')->name('config.impuestos.update')->middleware('auth');
 Route::post('/config/impuestos/update/form')->uses('impuestosController@updateForm')->name('config.impuestos.update.form')->middleware('auth');
-Route::get('/config/impuestos/delete/{banco_id}')->uses('impuestosController@deletePage')->name('config.impuestos.delete')->middleware('auth');
+Route::get('/config/impuestos/delete/{impuesto_id}')->uses('impuestosController@deletePage')->name('config.impuestos.delete')->middleware('auth');
 Route::post('/config/impuestos/delete/form')->uses('impuestosController@deleteForm')->name('config.impuestos.delete.form')->middleware('auth');
+
+// Facturación
+Route::get('/ventaspos/facturacion/')->uses('facturacionController@index')->name('ventaspos.facturacion')->middleware('auth');
+Route::get('/ventaspos/facturacion/insert')->uses('facturacionController@insertPage')->name('ventaspos.facturacion.insert')->middleware('auth');
+Route::post('/ventaspos/facturacion/insert/form')->uses('facturacionController@insertForm')->name('ventaspos.facturacion.insert.form')->middleware('auth');
+Route::get('/ventaspos/facturacion/update/{factura_id}')->uses('facturacionController@updatePage')->name('ventaspos.facturacion.update')->middleware('auth');
+Route::post('/ventaspos/facturacion/update/form')->uses('facturacionController@updateForm')->name('ventaspos.facturacion.update.form')->middleware('auth');
+Route::get('/ventaspos/facturacion/delete/{factura_id}')->uses('facturacionController@deletePage')->name('ventaspos.facturacion.delete')->middleware('auth');
+Route::post('/ventaspos/facturacion/delete/form')->uses('facturacionController@deleteForm')->name('ventaspos.facturacion.delete.form')->middleware('auth');
