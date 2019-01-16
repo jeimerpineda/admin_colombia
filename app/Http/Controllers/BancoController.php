@@ -24,7 +24,6 @@ class BancoController extends Controller
     	$banco = new \App\Banco;
     	$user = \Auth::user();
     	$banco->user_id = $user->id;
-    	/*$banco->nombre = $request->input('nombre');*/
     	$banco->descripcion = $request->input('descripcion');
     	$banco->status = $request->input('status');
     	$banco->save();
@@ -47,7 +46,6 @@ class BancoController extends Controller
     	$banco = \App\Banco::findOrFail($request->input('banco_id'));
     	$user = \Auth::user();
     	$banco->user_id = $user->id;
-    	/*$banco->nombre = $request->input('nombre');*/
     	$banco->descripcion = $request->input('descripcion');
     	$banco->status = $request->input('status');
     	$banco->save();

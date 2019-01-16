@@ -1,15 +1,15 @@
 @extends('layouts.principal')
-@section('title') Bancos @endsection
+@section('title') Unidades de Medida @endsection
 @section('content')
-	{!!\Basics::Breadcrumb(['Configuración','Bancos','Lista',])!!}
+	{!!\Basics::Breadcrumb(['Configuración','Unidades de Medida','Lista',])!!}
 	<div class="container-fluid">
 		<div class="btn-group d-flex justify-content-end mb-3">
-			<a href="{{route('config.bancos.insert')}}" class="btn btn-dark btn-sm">
-				<i class="fa fa-plus"></i> Agregar Banco
+			<a href="{{route('config.unidadmedida.insert')}}" class="btn btn-dark btn-sm">
+				<i class="fa fa-plus"></i> Agregar Unidad de Medida
 			</a>
 		</div>
 		{!!\Basics::printMessage('message')!!}
-		@if($bancos->isEmpty())
+		@if($unidadmedida->isEmpty())
 			<div class="alert alert-info">
 				No se encontraron registros
 			</div>
@@ -27,19 +27,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($bancos as $banco)
+						@foreach($unidadmedida as $unidmed)
 							<tr>
-								<td>{{$banco->id}}</td>
-								<td>{{$banco->descripcion}}</td>
-								<td>{{($banco->status==1) ? 'Activo' : 'Inactivo'}}</td>
-								<td>{{$banco->created_at}}</td>
-								<td>{{$banco->updated_at}}</td>
+								<td>{{$unidmed->id}}</td>
+								<td>{{$unidmed->descripcion}}</td>
+								<td>{{($unidmed->status==1) ? 'Activo' : 'Inactivo'}}</td>
+								<td>{{$unidmed->created_at}}</td>
+								<td>{{$unidmed->updated_at}}</td>
 								<td>
 									<div class="btn-group">
-										<a href="{{route('config.bancos.update',['banco_id'=>$banco->id])}}" class="btn btn-outline-primary btn-sm">
+										<a href="{{route('config.unidadmedida.update',['unidmed_id'=>$unidmed->id])}}" class="btn btn-outline-primary btn-sm">
 											<i class="fa fa-edit"></i>
 										</a>
-										<a href="{{route('config.bancos.delete',['banco_id'=>$banco->id])}}" class="btn btn-outline-danger btn-sm">
+										<a href="{{route('config.unidadmedida.delete',['unidmed_id'=>$unidmed->id])}}" class="btn btn-outline-danger btn-sm">
 											<i class="fa fa-trash"></i>
 										</a>
 									</div>
@@ -50,7 +50,7 @@
 				</table>
 			</div>
 			<div class="d-flex justify-content-center">
-				{{$bancos->links()}}
+				{{$unidadmedida->links()}}
 			</div>
 		@endempty
 	</div>
