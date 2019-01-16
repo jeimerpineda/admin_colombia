@@ -52,6 +52,9 @@
                                 <a class="dropdown-item" href="{{route('config.impuestos')}}">
                                     Impuestos
                                 </a>
+                                <a class="dropdown-item" href="{{route('config.formasdepago')}}">
+                                    Formas de Pago
+                                </a>
                             </div>
                         </li>
                     </ul>
