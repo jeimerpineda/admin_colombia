@@ -33,10 +33,10 @@ Route::get('/config/bancos/delete/{banco_id}')->uses('BancoController@deletePage
 Route::post('/config/bancos/delete/form')->uses('BancoController@deleteForm')->name('config.bancos.delete.form')->middleware('auth');
 
 //Impuestos
-Route::get('/config/impuestos/')->uses('impuestosController@index')->name('config.impuestos')->middleware('auth');
-Route::get('/config/impuestos/insert')->uses('impuestosController@insertPage')->name('config.impuestos.insert')->middleware('auth');
-Route::post('/config/impuestos/insert/form')->uses('impuestosController@insertForm')->name('config.impuestos.insert.form')->middleware('auth');
-Route::get('/config/impuestos/update/{impuesto_id}')->uses('impuestosController@updatePage')->name('config.impuestos.update')->middleware('auth');
-Route::post('/config/impuestos/update/form')->uses('impuestosController@updateForm')->name('config.impuestos.update.form')->middleware('auth');
-Route::get('/config/impuestos/delete/{banco_id}')->uses('impuestosController@deletePage')->name('config.impuestos.delete')->middleware('auth');
-Route::post('/config/impuestos/delete/form')->uses('impuestosController@deleteForm')->name('config.impuestos.delete.form')->middleware('auth');
+Route::get('/config/impuestos/')->uses('ImpuestosController@index')->name('config.impuestos')->middleware('auth');
+Route::get('/config/impuestos/insert')->uses('ImpuestosController@insertPage')->name('config.impuestos.insert')->middleware('auth');
+Route::post('/config/impuestos/insert/form')->uses('ImpuestosController@insertForm')->name('config.impuestos.insert.form')->middleware('auth');
+Route::get('/config/impuestos/update/{impuesto_id}')->uses('ImpuestosController@updatePage')->name('config.impuestos.update')->middleware('auth');
+Route::post('/config/impuestos/update/form')->uses('ImpuestosController@updateForm')->name('config.impuestos.update.form')->middleware('auth');
+Route::get('/config/impuestos/delete/{impuesto_id}')->uses('ImpuestosController@deletePage')->name('config.impuestos.delete')->middleware('auth');
+Route::post('/config/impuestos/delete/form')->uses('ImpuestosController@deleteForm')->name('config.impuestos.delete.form')->middleware('auth');
