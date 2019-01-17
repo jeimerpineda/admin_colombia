@@ -72,7 +72,16 @@ Route::post('/ventaspos/facturacion/delete/form')->uses('facturacionController@d
 Route::get('/config/tiposdefacturas/')->uses('TiposFacturaController@index')->name('config.tiposdefacturas')->middleware('auth');
 Route::get('/config/tiposdefacturas/insert')->uses('TiposFacturaController@insertPage')->name('config.tiposdefacturas.insert')->middleware('auth');
 Route::post('/config/tiposdefacturas/insert/form')->uses('TiposFacturaController@insertForm')->name('config.tiposdefacturas.insert.form')->middleware('auth');
-Route::get('/config/tiposdefacturs/update/{tipfacturas_ide}')->uses('TiposFacturaController@updatePage')->name('config.tiposdefacturas.update')->middleware('auth');
+Route::get('/config/tiposdefacturas/update/{tipfacturas_ide}')->uses('TiposFacturaController@updatePage')->name('config.tiposdefacturas.update')->middleware('auth');
 Route::post('/config/tiposdefacturas/update/form')->uses('TiposFacturaController@updateForm')->name('config.tiposdefacturas.update.form')->middleware('auth');
 Route::get('/config/tiposdefacturas/delete/{tipfacturas_ide}')->uses('TiposFacturaController@deletePage')->name('config.tiposdefacturas.delete')->middleware('auth');
 Route::post('/config/tiposdefacturas/delete/form')->uses('TiposFacturaController@deleteForm')->name('config.tiposdefacturas.delete.form')->middleware('auth');
+
+//Empresa
+Route::get('/config/empresa/')->uses('EmpresaController@index')->name('config.empresa')->middleware('auth');
+Route::get('/config/empresa/insert')->uses('EmpresaController@insertPage')->name('config.empresa.insert')->middleware('auth');
+Route::post('/config/empresa/insert/form')->uses('EmpresaController@insertForm')->name('config.empresa.insert.form')->middleware('auth');
+Route::get('/config/empresa/update/{empresa_ide}')->uses('EmpresaController@updatePage')->name('config.empresa.update')->middleware('auth');
+Route::post('/config/empresa/update/form')->uses('EmpresaController@updateForm')->name('config.empresa.update.form')->middleware('auth');
+Route::get('/config/empresa/delete/{empresa_ide}')->uses('EmpresaController@deletePage')->name('config.empresa.delete')->middleware('auth');
+Route::post('/config/empresa/delete/form')->uses('EmpresaController@deleteForm')->name('config.empresa.delete.form')->middleware('auth');
