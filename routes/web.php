@@ -54,7 +54,7 @@ Route::post('/config/impuestos/delete/form')->uses('ImpuestosController@deleteFo
 Route::get('/config/formasdepago/')->uses('FormasPagoController@index')->name('config.formasdepago')->middleware('auth');
 Route::get('/config/formasdepago/insert')->uses('FormasPagoController@insertPage')->name('config.formasdepago.insert')->middleware('auth');
 Route::post('/config/formasdepago/insert/form')->uses('FormasPagoController@insertForm')->name('config.formasdepago.insert.form')->middleware('auth');
-Route::get('/config/formasdepago/update/{impuesto_id}')->uses('FormasPagoController@updatePage')->name('config.formasdepago.update')->middleware('auth');
+Route::get('/config/formasdepago/update/{formaspago_id}')->uses('FormasPagoController@updatePage')->name('config.formasdepago.update')->middleware('auth');
 Route::post('/config/formasdepago/update/form')->uses('FormasPagoController@updateForm')->name('config.formasdepago.update.form')->middleware('auth');
-Route::get('/config/formasdepago/delete/{impuesto_id}')->uses('FormasPagoController@deletePage')->name('config.formasdepago.delete')->middleware('auth');
+Route::get('/config/formasdepago/delete/{formaspago_id}')->uses('FormasPagoController@deletePage')->name('config.formasdepago.delete')->middleware('auth');
 Route::post('/config/formasdepago/delete/form')->uses('FormasPagoController@deleteForm')->name('config.formasdepago.delete.form')->middleware('auth');
