@@ -111,7 +111,7 @@
 
 
 {{-- importar la librerias de jquery --}}
-<script src="{{ asset('js/jquery-3.2.1.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/chosen.jquery.js') }}"></script>
 
 @yield('js')
