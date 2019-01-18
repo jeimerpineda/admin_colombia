@@ -75,6 +75,12 @@
                                 <a class="dropdown-item" href="{{route('config.formasdepago')}}">
                                     Formas de Pago
                                 </a>
+                                <a class="dropdown-item" href="{{route('config.tiposdefacturas')}}">
+                                    Tipos de Factura
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.empresa')}}">
+                                    Empresa
+                                </a>
                             </div>
                         </li>
                     </ul>
