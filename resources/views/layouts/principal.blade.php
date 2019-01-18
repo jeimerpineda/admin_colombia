@@ -46,7 +46,7 @@
                         {{-- MAESTROS --}}
                         <li class="nav-item dropdown {{\Basics::currentLink('ventaspos')}}">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fa fa-folder"></i> Ventas POS
+                                <i class="fa fa-money-bill-alt"></i> Ventas POS
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -114,13 +114,10 @@
             @yield('content')
         </main>
     </div>
+    {{-- importar la librerias de jquery --}}
+    <script src="{{ asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/chosen.jquery.js') }}"></script>
     @yield('scripts')
+    @yield('js')
 </body>
 </html>
-
-
-{{-- importar la librerias de jquery --}}
-<script src="{{ asset('js/jquery-3.2.1.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/chosen.jquery.js') }}"></script>
-
-@yield('js')

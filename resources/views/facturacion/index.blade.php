@@ -8,25 +8,33 @@
 		{{-- FIN DE IMPRESION DE MENSAJES --}}
 
 		{{-- BUSCADOR DE CLIENTE --}}
-		<div class="form-group">
-			<label for="cliente">Cliente:</label>
-			<select data-placeholder="Seleccione una opción" class="chosen-select-width" tabindex="-1" style="display: none;">
-			{{-- <select name="" class="form-control search-cliente"> --}}
-				<option value=""></option>
-				<option value="1">option1</option>
-				<option value="2">option2</option>
-				<option value="3">option3</option>
-			</select>
-		</div>
-
+		<form action="" method="POST" accept-charset="utf-8">
+			<div class="form-group">
+				<label for="cliente">Cliente:</label>
+				<select data-placeholder="Seleccione una opción" class="select-cliente" >
+					<option value=""></option>
+					@foreach ($clientes as $cliente)
+						<option value="{{ $cliente->id}}">{{ $cliente->dni.' '. $cliente->nombres .' '. $cliente->apellidos}}</option>
+					@endforeach
+				</select>
+				<button class="btn btn-primary">
+					<i class="fa fa-check"></i>
+				</button>
+			</div>
+		</form>
 		{{-- FIN DE BUSCADOR CLEINTE --}}
 	</div>
 @endsection
 
 @section('js')
 	<script>
-		$('.chosen-select-width').chosen({
-			width:'50%'
-		});
+		$(function(){
+			var j = jQuery.noConflict();
+			$(".select-cliente").chosen({
+				width:'20%',
+				no_results_text:'No hay resultados para:',
+				allow_single_deselect: true
+			});
+		})
 	</script>
 @endsection
