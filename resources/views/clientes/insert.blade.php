@@ -14,7 +14,7 @@
 					<div class="form-group row">
 						<label for="dni" class="col-3 col-form-label">Dni:</label>
 						<div class="col-9">
-							<input required type="text" name="dni" class="form-control" value="{{$listclientes->dni}}">
+							<input required type="text" name="dni" class="form-control" value="{{old('dni')}}">
 						</div>
 					</div>
 					<div class="form-group row">
