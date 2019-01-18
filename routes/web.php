@@ -86,3 +86,12 @@ Route::post('/config/empresa/update/form')->uses('EmpresaController@updateForm')
 Route::get('/config/empresa/delete/{empresa_ide}')->uses('EmpresaController@deletePage')->name('config.empresa.delete')->middleware('auth');
 Route::post('/config/empresa/delete/form')->uses('EmpresaController@deleteForm')->name('config.empresa.delete.form')->middleware('auth');
 
+//Clientes
+Route::get('/config/clientes/')->uses('ClientesController@index')->name('config.clientes')->middleware('auth');
+Route::get('/config/clientes/insert')->uses('ClientesController@insertPage')->name('config.clientes.insert')->middleware('auth');
+Route::post('/config/clientes/insert/form')->uses('ClientesController@insertForm')->name('config.clientes.insert.form')->middleware('auth');
+Route::get('/config/clientes/update/{cliente_ide}')->uses('ClientesController@updatePage')->name('config.clientes.update')->middleware('auth');
+Route::post('/config/clientes/update/form')->uses('ClientesController@updateForm')->name('config.clientes.update.form')->middleware('auth');
+Route::get('/config/clientes/delete/{cliente_ide}')->uses('ClientesController@deletePage')->name('config.clientes.delete')->middleware('auth');
+Route::post('/config/clientes/delete/form')->uses('ClientesController@deleteForm')->name('config.clientes.delete.form')->middleware('auth');
+
