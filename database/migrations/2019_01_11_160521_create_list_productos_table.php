@@ -13,7 +13,7 @@ class CreateListProductosTable extends Migration
      */
     public function up()
     {
-        Schema::create('list_productos', function (Blueprint $table) {
+        Schema::create('productos', function (Blueprint $table) {
             $table->increments('id')->comment('Ide Clave de la tabla productos');
             $table->unsignedInteger('user_id')->comment('Ide Clave de la tabla usuario');
             $table->string('codigo_barrra',20)->comment('codigo barras');

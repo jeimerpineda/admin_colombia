@@ -95,3 +95,11 @@ Route::post('/config/clientes/update/form')->uses('ClientesController@updateForm
 Route::get('/config/clientes/delete/{cliente_ide}')->uses('ClientesController@deletePage')->name('config.clientes.delete')->middleware('auth');
 Route::post('/config/clientes/delete/form')->uses('ClientesController@deleteForm')->name('config.clientes.delete.form')->middleware('auth');
 
+//Productos
+Route::get('/config/productos/')->uses('ProductosController@index')->name('config.productos')->middleware('auth');
+Route::get('/config/productos/insert')->uses('ProductosController@insertPage')->name('config.productos.insert')->middleware('auth');
+Route::post('/config/productos/insert/form')->uses('ProductosController@insertForm')->name('config.productos.insert.form')->middleware('auth');
+Route::get('/config/productos/update/{producto_ide}')->uses('ProductosController@updatePage')->name('config.productos.update')->middleware('auth');
+Route::post('/config/productos/update/form')->uses('ProductosController@updateForm')->name('config.productos.update.form')->middleware('auth');
+Route::get('/config/productos/delete/{producto_ide}')->uses('ProductosController@deletePage')->name('config.productos.delete')->middleware('auth');
+Route::post('/config/productos/delete/form')->uses('ProductosController@deleteForm')->name('config.productos.delete.form')->middleware('auth');

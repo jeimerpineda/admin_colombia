@@ -40,7 +40,7 @@ class ClientesController extends Controller
     	$clientes->movil = $request->input('movil');
     	$clientes->save();
     	return redirect()->route('config.clientes')->with([
-    		'message'=>$clientes->razon_social.' ha sido agregado correctamente'
+    		'message'=>$clientes->nombres.' ha sido agregado correctamente'
     	]);
     }
 
