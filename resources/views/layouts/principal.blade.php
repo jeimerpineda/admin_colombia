@@ -18,7 +18,12 @@
     
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    {{-- css de chosen --}}
+    <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
+
 </head>
 <body>
     <div id="app">
@@ -37,6 +42,21 @@
                         <li class="nav-item {{\Basics::currentLink('news')}}">
                             <a class="nav-link" href="{{route('news')}}"><i class="fa fa-newspaper"></i> Novedades</a>
                         </li>
+
+                        {{-- MAESTROS --}}
+                        <li class="nav-item dropdown {{\Basics::currentLink('ventaspos')}}">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <i class="fa fa-money-bill-alt"></i> Ventas POS
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('ventaspos.facturacion')}}">
+                                    Facturaci&oacute;n
+                                </a>
+                            </div>
+                        </li>
+
+                        {{-- CONFIGURACION --}}
                         <li class="nav-item dropdown {{\Basics::currentLink('config')}}">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="fa fa-cogs"></i> Configuración
@@ -45,6 +65,21 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{route('config.bancos')}}">
                                     Bancos
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.unidadmedida')}}">
+                                    Unidades de Medida
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.impuestos')}}">
+                                    Impuestos
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.formasdepago')}}">
+                                    Formas de Pago
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.tiposdefacturas')}}">
+                                    Tipos de Factura
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.empresa')}}">
+                                    Empresa
                                 </a>
                             </div>
                         </li>
@@ -79,6 +114,10 @@
             @yield('content')
         </main>
     </div>
+    {{-- importar la librerias de jquery --}}
+    <script src="{{ asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/chosen.jquery.js') }}"></script>
     @yield('scripts')
+    @yield('js')
 </body>
 </html>

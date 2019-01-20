@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Banco extends Model
+class Facturacion extends Model
 {
-    protected $table = 'list_bancos';
+    protected $table = 'facturas';
 }
