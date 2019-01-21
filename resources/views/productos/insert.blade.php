@@ -44,7 +44,7 @@
 					<div class="form-group row">
 						<label for="costo_dolar" class="col-3 col-form-label">Costo Dolar:</label>
 						<div class="col-9">
-							<input required type="text" name="tlf1" class="form-control" value="{{old('costo_dolar')}}">
+							<input required type="text" name="costo_dolar" class="form-control" value="{{old('costo_dolar')}}">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -76,9 +76,9 @@
 						<label for="unimed_id" class="col-3 col-form-label">Unidad de Medida:</label>
 						<div class="col-9">
 							<select name="unimed_id" id="status" class="custom-select">
- 								@foreach($listunimed as $bc)
-   								<option value="{{$bc->unidadmedida->id}}"> 
-   									{{ $bc->unidadmedida->descripcion }} 
+ 								@foreach($unidadmedida as $unidadmed)
+   								<option value="{{$unidadmed->id}}"> 
+   									{{ $unidadmed->descripcion }} 
    								</option>
 								@endforeach
 							</select>
@@ -97,9 +97,9 @@
 						<label for="empre_id" class="col-3 col-form-label">Empresa:</label>
 						<div class="col-9">
 							<select name="empre_id" id="status" class="custom-select">
- 								@foreach($listempre as $bc2)
-   								<option value="{{$bc2->empresa->id}}"> 
-   									{{ $bc2->empresa->razon_social }} 
+ 								@foreach($empresas as $empresa)
+   								<option value="{{$empresa->id}}"> 
+   									{{ $empresa->razon_social }} 
    								</option>
 								@endforeach
 							</select>
@@ -115,9 +115,9 @@
 						<label for="impuestos_id" class="col-3 col-form-label">Impuesto:</label>
 						<div class="col-9">
 							<select name="impuestos_id" id="impuestos_id" class="custom-select">
- 								@foreach($listempre as $bc3)
-   								<option value="{{$bc3->impuesto->id}}"> 
-   									{{ $bc3->impuesto->descripcion }} 
+ 								@foreach($impuestos as $impuesto)
+   								<option value="{{$impuesto->id}}"> 
+   									{{ $impuesto->descripcion }} 
    								</option>
 								@endforeach
 							</select>

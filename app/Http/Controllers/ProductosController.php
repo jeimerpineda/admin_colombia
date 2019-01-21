@@ -9,29 +9,56 @@ class ProductosController extends Controller
 {
     public function index() {
     	$productos = \App\Productos::orderBy('id','desc')->paginate(10);
-    	return view('productos.index',['listproductos'=>$productos]);
+    	$empresas = \App\Empresa::All();
+    	return view('productos.index',['listproductos'=>$productos],compact('empresas'));
     }
 
     public function insertPage() {
-    	$productos = \App\Productos::with('unidadmedida')->get();
-    	$productos2 = \App\Productos::with('empresa')->get();
-    	//$productos3 = \App\Productos::with('impuesto')->get();
-    	return view('productos.insert',['listunimed'=>$productos],['listempre'=>$productos2]);
+    	$unidadmedida = \App\UnidadMedida::All();
+    	$empresas = \App\Empresa::All();
+    	$impuestos = \App\Impuestos::All();
+    	return view('productos.insert',compact('unidadmedida','empresas','impuestos'));
     }
 
     public function insertForm(Request $request) {
     	$data = $request->validate([
-    		'descripcion'=>'required|unique:list_bancos,descripcion',
+    		'codigo'=>'required|unique:productos,codigo_barrra',
+    		'descripcion'=>'required',
+    		'existen'=>'required',
+    		'existencia_minima'=>'required',
+    		'costo'=>'required',
+    		'costo_dolar'=>'required',
+    		'precio_venta1'=>'required',
+    		'precio_venta2'=>'required',
+    		'precio_venta_dolar1'=>'required',
+    		'precio_venta_dolar2'=>'required',
+    		'unimed_id'=>'required',
     		'status'=>'required',
+    		'empre_id'=>'required',
+    		'descuento'=>'required',
+    		'impuestos_id'=>'required',
     	]);
-    	$banco = new \App\Banco;
+    	$productos = new \App\Productos;
     	$user = \Auth::user();
-    	$banco->user_id = $user->id;
-    	$banco->descripcion = $request->input('descripcion');
-    	$banco->status = $request->input('status');
-    	$banco->save();
-    	return redirect()->route('config.bancos')->with([
-    		'message'=>$banco->descripcion.' ha sido agregado correctamente'
+    	$productos->user_id = $user->id;
+    	$productos->codigo_barrra = $request->input('codigo');
+    	$productos->descripcion = $request->input('descripcion');
+    	$productos->existen = $request->input('existen');
+    	$productos->existencia_minima = $request->input('existencia_minima');
+    	$productos->costo = $request->input('costo');
+    	$productos->costo_dolar = $request->input('costo_dolar');
+    	$productos->precio_venta1 = $request->input('precio_venta1');
+    	$productos->precio_venta2 = $request->input('precio_venta2');
+    	$productos->precio_venta_dolar1 = $request->input('precio_venta_dolar1');
+    	$productos->precio_venta_dolar2 = $request->input('precio_venta_dolar2');
+    	$productos->unimed_id = $request->input('unimed_id');
+    	$productos->servicio = $request->input('status');
+    	$productos->empre_id = $request->input('empre_id');
+    	$productos->porcentaje_descuento = $request->input('descuento');
+    	$productos->impuestos_id = $request->input('impuestos_id');
+    	$productos->save();
+    	return redirect()->route('config.productos')->with([
+    		'message'=>$productos->descripcion.' ha sido agregado correctamente'
     	]);
     }
 
