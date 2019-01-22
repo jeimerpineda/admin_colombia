@@ -75,7 +75,7 @@
 					<div class="form-group row">
 						<label for="unimed_id" class="col-3 col-form-label">Unidad de Medida:</label>
 						<div class="col-9">
-							<select name="unimed_id" id="status" class="custom-select">
+							<select name="unimed_id" id="status" class="custom-select chosen">
  								@foreach($unidadmedida as $unidadmed)
    								<option value="{{$unidadmed->id}}"> 
    									{{ $unidadmed->descripcion }} 
@@ -96,7 +96,7 @@
 					<div class="form-group row">
 						<label for="empre_id" class="col-3 col-form-label">Empresa:</label>
 						<div class="col-9">
-							<select name="empre_id" id="status" class="custom-select">
+							<select name="empre_id" id="status" class="custom-select chosen">
  								@foreach($empresas as $empresa)
    								<option value="{{$empresa->id}}"> 
    									{{ $empresa->razon_social }} 
@@ -114,7 +114,7 @@
 					<div class="form-group row">
 						<label for="impuestos_id" class="col-3 col-form-label">Impuesto:</label>
 						<div class="col-9">
-							<select name="impuestos_id" id="impuestos_id" class="custom-select">
+							<select name="impuestos_id" id="impuestos_id" class="custom-select chosen">
  								@foreach($impuestos as $impuesto)
    								<option value="{{$impuesto->id}}"> 
    									{{ $impuesto->descripcion }} 
@@ -136,4 +136,16 @@
 			</div>
 		</div>
 	</div>
+@endsection
+@section('js')
+<script>
+	$(function(){
+		var j = jQuery.noConflict();
+		$(".chosen").chosen({
+			width:'100%',
+			no_results_text:'No hay resultados para:',
+			allow_single_deselect: true
+		});
+	});
+</script>
 @endsection
