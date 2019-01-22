@@ -81,6 +81,12 @@
                                 <a class="dropdown-item" href="{{route('config.empresa')}}">
                                     Empresa
                                 </a>
+                                <a class="dropdown-item" href="{{route('config.clientes')}}">
+                                    Clientes
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.productos')}}">
+                                    Productos
+                                </a>
                             </div>
                         </li>
                     </ul>
