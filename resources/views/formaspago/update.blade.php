@@ -21,7 +21,7 @@
 					<div class="form-group row">
 						<label for="dias" class="col-2 col-form-label">Dias:</label>
 						<div class="col-10">
-							<input required type="number" name="dias" class="form-control" value="{{$formaspagos->dias}}">
+							<input required type="number" min="0" name="dias" class="form-control" value="{{$formaspagos->dias}}">
 						</div>
 					</div>
 					<div class="form-group row">

@@ -20,7 +20,7 @@
 					<div class="form-group row">
 						<label for="dias" class="col-2 col-form-label">D&iacute;as:</label>
 						<div class="col-10">
-							<input required type="number" name="dias" class="form-control" value="{{old('dias')}}">
+							<input required type="number" name="dias" min="0" class="form-control" value="{{old('dias')}}">
 						</div>
 					</div>
 					<div class="form-group row">
