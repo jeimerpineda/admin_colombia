@@ -23,6 +23,8 @@
 
     {{-- css de chosen --}}
     <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
+    {{-- css stacktable --}}
+    <link rel="stylesheet" href="{{ asset('css/stacktable.css') }}">
 
 </head>
 <body>
@@ -123,6 +125,7 @@
     {{-- importar la librerias de jquery --}}
     <script src="{{ asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/chosen.jquery.js') }}"></script>
+    <script src="{{ asset('js/stacktable.js') }}"></script>
     @yield('scripts')
     @yield('js')
 </body>
