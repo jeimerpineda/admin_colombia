@@ -2,7 +2,7 @@
 @section('title') Eliminar Producto @endsection
 @section('content')
 	{!!\Basics::Breadcrumb(['Configuración','Productos','Eliminar'])!!}
-	<div class="col-8 offset-2">
+	<div class="col-12 offset-20">
 		<div class="card">
 			<div class="card-header">
 				Eliminar Producto
@@ -11,8 +11,12 @@
 				<div class="alert alert-info">
 					Esta acción borrará el registro de la base de datos. ¿Está segur@ que desea continuar?
 				</div>
-				<form action="{{route('config.productos.delete.form')}}" id="form_productos" method="POST" class="col-8 offset-2">
+				<form action="{{route('config.productos.delete.form')}}" id="form_productos" method="POST" class="col-12 offset-20">
 					@csrf
+					<div class="row">
+  						<div class="col-sm-6">
+    						<div class="card">
+     						 <div class="card-body">
 					<div class="form-group row">
 						<label for="codigo" class="col-3 col-form-label">Código:</label>
 						<div class="col-9">
@@ -61,6 +65,12 @@
 							<input required type="text" name="precio_venta2" class="form-control" value="{{$producto->precio_venta2}}">
 						</div>
 					</div>
+					</div>
+    			</div>
+  			</div>
+  			<div class="col-sm-6">
+					    <div class="card">
+					      <div class="card-body">
 					<div class="form-group row">
 						<label for="precio_venta_dolar1" class="col-3 col-form-label">Precio de Venta Dolar 1:</label>
 						<div class="col-9">
@@ -107,8 +117,13 @@
 								<input required type="text" name="impuestos_id" class="form-control" value="{{ $producto->impuestos->descripcion }}">
 						</div>
 					</div>
+					</div>
+    			</div>
+  			</div>
+  		</div>
+  			<br>
 					<div class="btn-group d-flex justify-content-center">
-						<a href="{{route('config.clientes')}}" class="btn btn-link mr-2">
+						<a href="{{route('config.productos')}}" class="btn btn-link mr-2">
 							<i class="fa fa-arrow-left"></i> Volver
 						</a>
 						<button class="btn btn-danger">

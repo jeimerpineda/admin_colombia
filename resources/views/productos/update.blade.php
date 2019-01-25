@@ -2,7 +2,7 @@
 @section('title') Actualizar Producto @endsection
 @section('content')
 	{!!\Basics::Breadcrumb(['Configuración','Productos','Actualizar'])!!}
-	<div class="col-8 offset-2">
+	<div class="col-12 offset-20">
 		<div class="card">
 			<div class="card-header">
 				Actualizar Producto
@@ -10,8 +10,12 @@
 			<div class="card-body">
 				{!!\Basics::printMessage('message')!!}
 				{!!\Basics::printErrors($errors->any(),$errors->all())!!}
-				<form action="{{route('config.productos.update.form')}}" id="form_productos" method="POST" class="col-8 offset-2">
+				<form action="{{route('config.productos.update.form')}}" id="form_productos" method="POST" class="col-12 offset-20">
 					@csrf
+					<div class="row">
+  						<div class="col-sm-6">
+    						<div class="card">
+     						 <div class="card-body">
 					<div class="form-group row">
 						<label for="codigo" class="col-3 col-form-label">Código:</label>
 						<div class="col-9">
@@ -60,6 +64,12 @@
 							<input required type="text" name="precio_venta2" class="form-control" value="{{$producto->precio_venta2}}">
 						</div>
 					</div>
+					</div>
+    			</div>
+  			</div>
+  			<div class="col-sm-6">
+					    <div class="card">
+					      <div class="card-body">
 					<div class="form-group row">
 						<label for="precio_venta_dolar1" class="col-3 col-form-label">Precio de Venta Dolar 1:</label>
 						<div class="col-9">
@@ -133,7 +143,11 @@
 							</select>
 						</div>
 					</div>
-					
+					</div>
+    			</div>
+  			</div>
+  		</div>
+  		<br>
 					<div class="btn-group d-flex justify-content-center">
 						<a href="{{route('config.productos')}}" class="btn btn-link mr-2">
 							<i class="fa fa-arrow-left"></i> Volver
