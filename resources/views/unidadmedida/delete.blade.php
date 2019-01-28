@@ -1,7 +1,7 @@
 @extends('layouts.principal')
-@section('title') Eliminar Banco @endsection
+@section('title') Eliminar Unidad de Medida @endsection
 @section('content')
-	{!!\Basics::Breadcrumb(['Configuración','Bancos','Eliminar'])!!}
+	{!!\Basics::Breadcrumb(['Configuración','Unidades de Medida','Eliminar'])!!}
 	<div class="col-8 offset-2">
 		<div class="card">
 			<div class="card-header">
@@ -11,32 +11,32 @@
 				<div class="alert alert-info">
 					Esta acción borrará el registro de la base de datos. ¿Está segur@ que desea continuar?
 				</div>
-				<form action="{{route('config.bancos.delete.form')}}" id="form_bancos" method="POST" class="col-8 offset-2">
+				<form action="{{route('config.unidadmedida.delete.form')}}" id="form_unidadmedida" method="POST" class="col-8 offset-2">
 					@csrf
 					<div class="form-group row">
-						<label for="descripcion" class="col-2 col-form-label">Nombre:</label>
+						<label for="descripcion" class="col-2 col-form-label">Descripci&oacute;n:</label>
 						<div class="col-10">
-							<input readonly type="text" name="descripcion" class="form-control" value="{{$banco->descripcion}}">
+							<input readonly type="text" name="descripcion" class="form-control" value="{{$unidmed->descripcion}}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="status" class="col-2 col-form-label">Status:</label>
 						<div class="col-10">
 							<select disabled name="status" id="status" class="custom-select">
-								<option value="1" {{\Basics::selected(1,$banco->status)}}>Activo</option>
-								<option value="0" {{\Basics::selected(0,$banco->status)}}>Inactivo</option>
+								<option value="1" {{\Basics::selected(1,$unidmed->status)}}>Activo</option>
+								<option value="0" {{\Basics::selected(0,$unidmed->status)}}>Inactivo</option>
 							</select>
 						</div>
 					</div>
 					<div class="btn-group d-flex justify-content-center">
-						<a href="{{route('config.bancos')}}" class="btn btn-link mr-2">
+						<a href="{{route('config.unidadmedida')}}" class="btn btn-link mr-2">
 							<i class="fa fa-arrow-left"></i> Volver
 						</a>
-						<button class="btn btn-danger" type="submit">
+						<button class="btn btn-danger">
 							<i class="fa fa-times"></i> Si, continuar
 						</button>
 					</div>
-					<input type="hidden" value="{{$banco->id}}" name="banco_id">
+					<input type="hidden" value="{{$unidmed->id}}" name="unidmed_id">
 				</form>
 			</div>
 		</div>
