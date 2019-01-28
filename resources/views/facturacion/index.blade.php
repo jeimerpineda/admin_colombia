@@ -32,6 +32,7 @@
 						<label for="formasdepago" class="col-sm-2 col-form-label">Forma de Pago:</label>
 						<div class="col-sm-2">
 							<select data-placeholder="Seleccione una opción" name="formadepago" class="chosen" onchange="updateFechVenc($(this).val())">
+
 								<option value=""></option>
 								@foreach ($formasdepago as $formadepago)
 								{{-- EN EL VALUE SE PASA EL VALOR DE DIAS PARA USARLO EN LA FUNCION --}}
@@ -54,14 +55,14 @@
 						<div class="form-group text-center table-responsive-sm">
 							<h5><b>Detalle de Factura</b></h5>
 						</div>
-						<table id="table-factura" class="table tabla-responsiva">
+						<table id="table-factura" class="table tabla-responsiva table-sm">
 							<thead>
 								<tr>
 									<th>Codigo</th>
 									<th>Descripci&oacute;n</th>
 									<th title="Unidad de Medida">UM</th>
-									<th title="Cantidad">Cant.</th>
 									<th title="Precio Unitario">Precio Un.</th>
+									<th title="Cantidad">Cant.</th>
 									<th title="Porcentaje de Descuento">% Dcto.</th>
 									<th title="Valor de Descuento">Valor Dcto</th>
 									<th title="Impuestos">Impuestos</th>
@@ -71,7 +72,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><input disabled type="text" name="codigo" id="codigo" class="form-control"></td>
+									<td  width="12%"><input disabled type="text" name="codigo" id="codigo" class="form-control" value=""></td>
 									<td>
 										<select data-placeholder="Seleccione una opción" name="producto" id="producto" class="chosen" onchange="cargarProducto($(this).val())">
 											<option value=""></option>
@@ -80,13 +81,23 @@
 											@endforeach
 										</select>
 									</td>
-									<td><input disabled type="text" name="unidadmedida" id="unidadmedida" class="form-control"></td>
-									<td><input disabled type="number" name="cantidad" id="cantidad" class="form-control"></td>
-									<td><input disabled type="text" name="precio_unitario" id="precio_unitario" class="form-control"></td>
-									<td><input disabled type="text" name="porc_descuento" id="porc_descuento" class="form-control"></td>
-									<td><input disabled type="text" name="valor_descuento" id="valor_descuento" class="form-control"></td>
-									<td><input disabled type="text" name="impuesto" id="impuesto" class="form-control"></td>
-									<td><input disabled type="text" name="precio_total" id="precio_total" class="form-control"></td>
+									<td width="10%"><input disabled type="text" name="unidadmedida" id="unidadmedida" class="form-control" value=""></td>
+									<td id="precios">
+										{{-- <input disabled type="text" name="precio_unitario" id="precio_unitario" class="form-control" value=""> --}}
+										<select disabled data-placeholder="Seleccione una opción" name="precio_uni" id="precio_unitario" class="custom-select">
+											{{-- <option value=""></option>
+			 								@foreach($unidadmedida as $unidadmed)
+				   								<option value="{{$unidadmed->id}}"> 
+				   									{{ $unidadmed->descripcion }} 
+				   								</option>
+											@endforeach --}}
+										</select>
+									</td>
+									<td width="8%"><input disabled type="number" min="0" name="cantidad" id="cantidad" class="form-control" value=""></td>
+									<td  width="5%"><input disabled type="text" name="porc_descuento" id="porc_descuento" class="form-control" value=""></td>
+									<td><input disabled type="text" name="valor_descuento" id="valor_descuento" class="form-control" value=""></td>
+									<td width="5%"><input disabled type="text" name="impuesto" id="impuesto" class="form-control" value=""></td>
+									<td><input disabled type="text" name="precio_total" id="precio_total" class="form-control" value=""></td>
 									<td align="center">
 										<div class="btn-group">
 											<button class="btn btn-outline-primary btn-sm col-sm-6" title="Editar"><i class="fa fa-pencil-alt"></i></button>
@@ -96,8 +107,8 @@
 								</tr>
 							</tbody>
 						</table>
-						<div id="errores"></div>
-						<div id="prueba"></div>					
+						<input type="hidden" name="unidmed_id" id="unidmed_id" value="">
+						<input type="hidden" name="impuesto_id" id="impuesto_id" value="">
 				</form>
 			</div>
 		</div>
@@ -150,37 +161,56 @@
 		}
 	};
 
+
+
 	function cargarProducto(producto_id){
-		// CARGAR DATOS DEL PRODUCTO
-		// console.log(producto_id);
+		$(function(){
+			$.ajaxSetup({
+			    headers: {
+			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			    }
+			});
+			$.ajax({
+				type: "POST",
+				dataType: 'json',
+				url: "{{ route('ventaspos.facturacion.getproducto') }}",
+				data:{'producto_id' : producto_id} ,
+                success: function (data) {
+                	// LAS POSICIONES 0,1,2 SE TOMAN JSON QUE LLEGA DESDE EL CONTROLADOR PARA TOMAR LAS FORANEAS
+                	$('input[name="codigo"]').val(data[0].codigo_barrra);
+                	$('input[name="unidadmedida"]').val(data[1].descripcion);
+                	$('input[name="unidmed_id"]').val(data[1].id); // PARA PASAR EL ID DE UNID-MED EN EL INPUT HIDDEN
+                	$('input[name="cantidad"]').removeAttr('disabled');
+                	//$('input[name="precio_unitario"]').val(data[0].precio_venta1); // ESTO DEBE SER UN SELECT
+                	$('input[name="porc_descuento"]').val(data[0].porcentaje_descuento+'%');
+                	$('input[name="valor_descuento"]').val('VALOR DESCUENTO'); // CALCULAR CON RESPECTO AL PRECIO DE VENTA SELECCIONADO
+                	$('input[name="impuesto"]').val(data[2].descripcion+'%');
+                	$('input[name="impuesto_id"]').val(data[2].id); // PARA PASAR EL ID DEL IMPUESTO EN EL INPUT HIDDEN
+                	$('input[name="precio_total"]').val('TOTAL'); // CALCULAR CON RESPECTO A LA CANTIDAD Y AL DESCUENTO
 
-		$.ajax({
-			type: "POST",
-			dataType: 'json',
-			url: "{{ route('ventaspos.facturacion.getproducto') }}",
-			data:{'producto_id' : producto_id} ,
-	                success: function (data) {
-	                	var comp_1 = '<option value=""></option>';
-	                	var respo = "";
-	                	var selected = "";
-	                	for(i in data) {
-	                		selected = (data[i]['id']==$('#producto').val()) ? 'selected' : "";
-	                		respo += '<option value="'+data[i]['id']+'" '+selected+'>'+data[i]['codigo_barra']+'</option>';
-	                	}
-	                	$('#prueba').html(comp_1+respo);
-	                },
-	                error: function (xhr) {
-	                	var result = "";
-	                	if(xhr.responseJSON.errors) {
-	                		for(i in xhr.responseJSON.errors) {
-	                			result += "<li>"+xhr.responseJSON.errors[i]+"</li>"
-	                		}
-	                	}
-	                	$('#errores').html('<div class="alert alert-danger alert-dismissible fade show"><ul>'+result+'</ul><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
-	                }
-	            }, "json")
-	};
+                	$('select[name="precio_uni"').hide();
+                	var respo = "";
+                	var selected = "";
+                	selected = (data[0]['id'] == 1) ? 'selected' : "";
 
+                	respo += '<select data-placeholder="Seleccione una opción" name="precio_unitario" id="precio_unitario" class="custom-select chosen">';
+                	respo += '<option value="'+data[0]['precio_venta1']+'" '+selected+'>'+data[0]['precio_venta1']+'</option>';
+                	respo += '<option value="'+data[0]['precio_venta2']+'">'+data[0]['precio_venta2']+'</option>';
+                	respo += '</select>'
+                	$('td[id="precios"').html(respo);
 
+                },
+                error: function (xhr) {
+                	var result = "";
+                	if(xhr.responseJSON.errors) {
+                		for(i in xhr.responseJSON.errors) {
+                			result += "<li>"+xhr.responseJSON.errors[i]+"</li>"
+                		}
+                	}
+                	$('#errores').html('<div class="alert alert-danger alert-dismissible fade show"><ul>'+result+'</ul><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+                }
+            }, "json")
+		})
+	}
 </script>
 @endsection

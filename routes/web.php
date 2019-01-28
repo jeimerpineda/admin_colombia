@@ -54,7 +54,7 @@ Route::post('/config/impuestos/insert/form/fast')->uses('ImpuestosController@ins
 
 // Facturación
 Route::get('/ventaspos/facturacion/')->uses('facturacionController@index')->name('ventaspos.facturacion')->middleware('auth');
-Route::post('ventaspos/facturacion/producto')->uses('facturacionController@getProducto')->name('ventaspos.facturacion.getproducto')->middleware('auth');
+Route::post('ventaspos/facturacion/producto')->uses('FacturacionController@getProducto')->name('ventaspos.facturacion.getproducto')->middleware('auth');
 Route::get('/ventaspos/facturacion/insert')->uses('facturacionController@insertPage')->name('ventaspos.facturacion.insert')->middleware('auth');
 Route::post('/ventaspos/facturacion/insert/form')->uses('facturacionController@insertForm')->name('ventaspos.facturacion.insert.form')->middleware('auth');
 Route::get('/ventaspos/facturacion/update/{factura_id}')->uses('facturacionController@updatePage')->name('ventaspos.facturacion.update')->middleware('auth');
