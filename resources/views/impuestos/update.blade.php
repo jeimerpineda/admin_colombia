@@ -2,7 +2,7 @@
 @section('title') Actualizar Impuesto @endsection
 @section('content')
 	{!!\Basics::Breadcrumb(['Configuración','Impuesto','Actualizar'])!!}
-	<div class="col-8 offset-2">
+	<div class="col-10 offset-1">
 		<div class="card">
 			<div class="card-header">
 				Actualizar Impuesto
@@ -13,14 +13,14 @@
 				<form action="{{route('config.impuestos.update.form')}}" id="form_bancos" method="POST" class="col-8 offset-2">
 					@csrf
 					<div class="form-group row">
-						<label for="descripcion" class="col-2 col-form-label">Impuesto:</label>
-						<div class="col-10">
+						<label for="descripcion" class="col-12 col-form-label">Impuesto:</label>
+						<div class="col-12">
 							<input required type="text" name="descripcion" class="form-control" value="{{$impuestos->descripcion}}">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="status" class="col-2 col-form-label">Status:</label>
-						<div class="col-10">
+						<label for="status" class="col-12 col-form-label">Status:</label>
+						<div class="col-12">
 							<select name="status" id="status" class="custom-select">
 								<option value="1" {{\Basics::selected(1,$impuestos->status)}}>Activo</option>
 								<option value="0" {{\Basics::selected(0,$impuestos->status)}}>Inactivo</option>
