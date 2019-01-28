@@ -32,6 +32,21 @@ class ImpuestosController extends Controller
     	]);
     }
 
+    public function insertFormFast(Request $request) {
+        $data = $request->validate([
+            'descripcion'=>'required|unique:list_impuestos,descripcion',
+            'status'=>'required',
+        ]);
+        $impuestos = new \App\Impuestos;
+        $user = \Auth::user();
+        $impuestos->user_id = $user->id;
+        $impuestos->descripcion = $request->input('descripcion');
+        $impuestos->status = $request->input('status');
+        $impuestos->save();
+        return response()->json(\App\Impuestos::all());
+    }
+
+
     public function updatePage($impuesto_id) {
     	$impuestos = \App\Impuestos::findOrFail($impuesto_id);
     	return view('impuestos.update',['impuestos'=>$impuestos]);

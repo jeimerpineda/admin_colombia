@@ -32,6 +32,20 @@ class UnidadMedidaController extends Controller
     	]);
     }
 
+    public function insertFormFast(Request $request) {
+        $data = $request->validate([
+            'descripcion'=>'required|unique:list_unidmed,descripcion',
+            'status'=>'required',
+        ]);
+        $unidmed = new \App\UnidadMedida;
+        $user = \Auth::user();
+        $unidmed->user_id = $user->id;
+        $unidmed->descripcion = $request->input('descripcion');
+        $unidmed->status = $request->input('status');
+        $unidmed->save();
+        return response()->json(\App\UnidadMedida::all());
+    }
+
     public function updatePage($unidmed_id) {
     	$unidmed = \App\UnidadMedida::findOrFail($unidmed_id);
     	return view('unidadmedida.update',['unidmed'=>$unidmed]);

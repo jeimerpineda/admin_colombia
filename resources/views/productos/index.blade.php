@@ -15,7 +15,7 @@
 			</div>
 		@else
 			<div class="table-responsive">
-				<table class="table">
+				<table class="table table-sm table-hover" id="card-table">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -44,7 +44,7 @@
 						@foreach($listproductos as $productos)
 							<tr>
 								<td>{{$productos->id}}</td>
-								<td>{{$productos->codigo_barra}}</td>
+								<td>{{$productos->codigo_barrra}}</td>
 								<td>{{$productos->descripcion}}</td>
 								<td>{{$productos->existen}}</td>
 								<td>{{$productos->existencia_minima}}</td>
@@ -54,11 +54,11 @@
 								<td>{{$productos->precio_venta2}}</td>
 								<td>{{$productos->precio_venta_dolar1}}</td>
 								<td>{{$productos->precio_venta_dolar2}}</td>
-								<td>{{$productos->unimed_id}}</td>
-								<td>{{$productos->servicio}}</td>
-								<td>{{$productos->empre_id}}</td>
+								<td>{{$productos->unimed->descripcion}}</td>
+								<td>{{($productos->servicio==1) ? 'Servicio' : 'No es servicio'}}</td>
+								<td>{{$productos->empresa->razon_social}}</td>
 								<td>{{$productos->porcentaje_descuento}}</td>
-								<td>{{$productos->impuestos_id}}</td>
+								<td>{{$productos->impuestos->descripcion}}</td>
 								<td>{{$productos->created_at}}</td>
 								<td>{{$productos->updated_at}}</td>
 								<td>
@@ -81,4 +81,9 @@
 			</div>
 		@endempty
 	</div>
+@endsection
+@section('js')
+<script>
+	$('#card-table').cardtable();
+</script>
 @endsection
