@@ -2,7 +2,7 @@
 @section('title') Eliminar Banco @endsection
 @section('content')
 	{!!\Basics::Breadcrumb(['Configuración','Bancos','Eliminar'])!!}
-	<div class="col-8 offset-2">
+	<div class="col-10 offset-1">
 		<div class="card">
 			<div class="card-header">
 				Eliminar Banco
@@ -14,31 +14,25 @@
 				<form action="{{route('config.bancos.delete.form')}}" id="form_bancos" method="POST" class="col-8 offset-2">
 					@csrf
 					<div class="form-group row">
-						<label for="nombre" class="col-2 col-form-label">Nombre:</label>
-						<div class="col-10">
-							<input readonly type="text" name="nombre" class="form-control" value="{{$banco->nombre}}">
+						<label for="descripcion" class="col-12 col-form-label">Nombre:</label>
+						<div class="col-12">
+							<input disabled readonly type="text" name="descripcion" class="form-control" value="{{$banco->descripcion}}">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="status" class="col-2 col-form-label">Status:</label>
-						<div class="col-10">
+						<label for="status" class="col-12 col-form-label">Status:</label>
+						<div class="col-12">
 							<select disabled name="status" id="status" class="custom-select">
 								<option value="1" {{\Basics::selected(1,$banco->status)}}>Activo</option>
 								<option value="0" {{\Basics::selected(0,$banco->status)}}>Inactivo</option>
 							</select>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label for="descripcion" class="col-12 col-form-label">Descripción:</label>
-						<div class="col-12">
-							<textarea disabled style="resize: none;" class="form-control" name="descripcion" id="descripcion">{{$banco->descripcion}}</textarea>
-						</div>
-					</div>
 					<div class="btn-group d-flex justify-content-center">
 						<a href="{{route('config.bancos')}}" class="btn btn-link mr-2">
 							<i class="fa fa-arrow-left"></i> Volver
 						</a>
-						<button class="btn btn-danger">
+						<button class="btn btn-danger" type="submit">
 							<i class="fa fa-times"></i> Si, continuar
 						</button>
 					</div>

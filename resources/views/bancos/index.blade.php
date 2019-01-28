@@ -15,11 +15,10 @@
 			</div>
 		@else
 			<div class="table-responsive">
-				<table class="table">
+				<table class="table table-sm table-hover" id="card-table">
 					<thead>
 						<tr>
 							<th>Id</th>
-							<th>Nombre</th>
 							<th>Descripción</th>
 							<th>Status</th>
 							<th>Creado</th>
@@ -31,7 +30,6 @@
 						@foreach($bancos as $banco)
 							<tr>
 								<td>{{$banco->id}}</td>
-								<td>{{$banco->nombre}}</td>
 								<td>{{$banco->descripcion}}</td>
 								<td>{{($banco->status==1) ? 'Activo' : 'Inactivo'}}</td>
 								<td>{{$banco->created_at}}</td>
@@ -56,4 +54,9 @@
 			</div>
 		@endempty
 	</div>
+@endsection
+@section('js')
+<script>
+	$('#card-table').cardtable();
+</script>
 @endsection
