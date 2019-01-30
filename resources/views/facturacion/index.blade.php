@@ -83,25 +83,18 @@
 									</td>
 									<td width="10%"><input disabled type="text" name="unidadmedida" id="unidadmedida" class="form-control" value=""></td>
 									<td id="precios">
-										{{-- <input disabled type="text" name="precio_unitario" id="precio_unitario" class="form-control" value=""> --}}
 										<select disabled data-placeholder="Seleccione una opción" name="precio_uni" id="precio_unitario" class="custom-select">
-											{{-- <option value=""></option>
-			 								@foreach($unidadmedida as $unidadmed)
-				   								<option value="{{$unidadmed->id}}"> 
-				   									{{ $unidadmed->descripcion }} 
-				   								</option>
-											@endforeach --}}
 										</select>
 									</td>
-									<td width="8%"><input disabled type="number" min="0" name="cantidad" id="cantidad" class="form-control" value=""></td>
+									<td width="8%"><input disabled type="number" min="1" name="cantidad" id="cantidad" class="form-control" value=""></td>
 									<td  width="5%"><input disabled type="text" name="porc_descuento" id="porc_descuento" class="form-control" value=""></td>
 									<td><input disabled type="text" name="valor_descuento" id="valor_descuento" class="form-control" value=""></td>
 									<td width="5%"><input disabled type="text" name="impuesto" id="impuesto" class="form-control" value=""></td>
 									<td><input disabled type="text" name="precio_total" id="precio_total" class="form-control" value=""></td>
 									<td align="center">
 										<div class="btn-group">
-											<button class="btn btn-outline-primary btn-sm col-sm-6" title="Editar"><i class="fa fa-pencil-alt"></i></button>
-											<button class="btn btn-outline-danger btn-sm col-sm-6" title="Borrar"><i class="fa fa-trash"></i></button>
+											{{-- <button class="btn btn-outline-primary btn-sm col-sm-6" title="Editar"><i class="fa fa-pencil-alt"></i></button> --}}
+											<button class="btn btn-outline-danger btn-sm col-sm-12" title="Borrar"><i class="fa fa-trash"></i></button>
 										</div>
 									</td>
 								</tr>
@@ -117,33 +110,59 @@
 
 @section('js')
 <script>
+	var j = jQuery.noConflict();  // SE ASIGNA LA VARIABLE J PARA EVITAR LOS CONFLICTOS CON EL ARCHIVO APP.JS 
+								  // POR LO TANTO LA VARIABLE $ ES SUPLANTADA POR LA VARIABLE J
+
+
 	var d = new Date();
 	year = d.getFullYear();
 	month = d.getMonth()+1;
 	day = d.getDate();
 	var fecha_actual = (year + '-' +(month<10 ? '0' : '') + month + '-' + (day<10 ? '0' : '') + day);
 	// VALIDAR QUE LA FECHA DE LA FACTURA NO SEA MAYOR A LA ACTUAL
-	$(".fecha").attr('max', fecha_actual);
+	j(".fecha").attr('max', fecha_actual);
 	// FUNCION CARDTABLE PARA LA TABLA RESPONSIVE
-	$('#table-factura').cardtable();
-
-	$(function(){
+	j('#table-factura').cardtable();
+	j(function(){
 		// CLASES CHOSEN
-		var j = jQuery.noConflict();
-		$(".chosen").chosen({
+		// var j = jQuery.noConflict();
+		j(".chosen").chosen({
 			width:'100%',
 			no_results_text:'No hay resultados para:'
 		});
 
 	});
+
+
+	// FUNCION PARA DAR EL FORMATO A LOS PRECIOS
+	function number_format(amount, decimals) {
+	    amount += ''; // por si pasan un numero y no un string
+	    amount = parseFloat(amount.replace(/[^0-9\.]/g, '')); // elimino cualquier cosa que no sea numero o punto
+
+	    decimals = decimals || 0; // por si la variable no fue pasada
+
+	    // si no es un numero o es igual a cero retorno el mismo cero
+	    if (isNaN(amount) || amount === 0) 
+	        return parseFloat(0).toFixed(decimals);
+
+	    // si es mayor o menor que cero retorno el valor formateado como numero
+	    amount = '' + amount.toFixed(decimals);
+
+	    var amount_parts = amount.split('.'),
+	        regexp = /(\d+)(\d{3})/;
+
+	    while (regexp.test(amount_parts[0]))
+	        amount_parts[0] = amount_parts[0].replace(regexp, '$1' + '.' + '$2');
+
+	    return amount_parts.join(',');
+	};
 	
 	// VALIDAR QUE LA FECHA DE VENCIMIENTO SE ACTUALICE DEPENDIENDO DE LA FORMA DE PAGO SELECCIONADA
-
 	function updateFechVenc(formPago){
 		var forma = formPago.split('-') ;
 		var formaPago = forma[0];
 		if (formaPago == 1) {  /*pago a contado*/
-			$("#fecha_vencimiento").attr('value',fecha_actual);
+			j("#fecha_vencimiento").attr('value',fecha_actual);
 		}else if((formaPago != 1) || (forma[1] > 0)){  /*pago a credito 30 dias*/
 			  var fecha_venc = new Date(fecha_actual);
 			  //dias a sumar
@@ -155,50 +174,55 @@
 			  var mes = fecha_venc.getMonth() + 1;
 			  var dia = fecha_venc.getDate();
 			  var resultado = ano + '-' + (mes<10 ? '0' : '') + mes  + '-'+ (dia<10 ? '0' : '') + dia;
-			  $("#fecha_vencimiento").attr('value',resultado);
+			  j("#fecha_vencimiento").attr('value',resultado);
 		}else{
-			$("#fecha_vencimiento").attr('value','');
+			j("#fecha_vencimiento").attr('value','');
 		}
 	};
 
-
-
+	// CARGAR TODOS LOS DATOS DE LOS PRODUCTOS
 	function cargarProducto(producto_id){
-		$(function(){
-			$.ajaxSetup({
+		j(function(){
+			j.ajaxSetup({
 			    headers: {
-			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			        'X-CSRF-TOKEN': j('meta[name="csrf-token"]').attr('content')
 			    }
 			});
-			$.ajax({
+			j.ajax({
 				type: "POST",
 				dataType: 'json',
 				url: "{{ route('ventaspos.facturacion.getproducto') }}",
 				data:{'producto_id' : producto_id} ,
                 success: function (data) {
-                	// LAS POSICIONES 0,1,2 SE TOMAN JSON QUE LLEGA DESDE EL CONTROLADOR PARA TOMAR LAS FORANEAS
-                	$('input[name="codigo"]').val(data[0].codigo_barrra);
-                	$('input[name="unidadmedida"]').val(data[1].descripcion);
-                	$('input[name="unidmed_id"]').val(data[1].id); // PARA PASAR EL ID DE UNID-MED EN EL INPUT HIDDEN
-                	$('input[name="cantidad"]').removeAttr('disabled');
-                	//$('input[name="precio_unitario"]').val(data[0].precio_venta1); // ESTO DEBE SER UN SELECT
-                	$('input[name="porc_descuento"]').val(data[0].porcentaje_descuento+'%');
-                	$('input[name="valor_descuento"]').val('VALOR DESCUENTO'); // CALCULAR CON RESPECTO AL PRECIO DE VENTA SELECCIONADO
-                	$('input[name="impuesto"]').val(data[2].descripcion+'%');
-                	$('input[name="impuesto_id"]').val(data[2].id); // PARA PASAR EL ID DEL IMPUESTO EN EL INPUT HIDDEN
-                	$('input[name="precio_total"]').val('TOTAL'); // CALCULAR CON RESPECTO A LA CANTIDAD Y AL DESCUENTO
 
-                	$('select[name="precio_uni"').hide();
+                	// LAS POSICIONES 0,1,2 SE TOMAN JSON QUE LLEGA DESDE EL CONTROLADOR PARA TOMAR LAS FORANEAS
+                	j('input[name="codigo"]').val(data[0].codigo_barrra);
+                	j('input[name="unidadmedida"]').val(data[1].descripcion);
+                	j('input[name="unidmed_id"]').val(data[1].id); // PARA PASAR EL ID DE UNID-MED EN EL INPUT HIDDEN
+                	j('input[name="cantidad"]').removeAttr('disabled').val('1');
+                	//$('input[name="precio_unitario"]').val(data[0].precio_venta1); // ESTO DEBE SER UN SELECT
+                	j('input[name="porc_descuento"]').val(data[0].porcentaje_descuento+'%');
+                	j('input[name="impuesto"]').val(data[2].descripcion+'%');
+                	j('input[name="impuesto_id"]').val(data[2].id); // PARA PASAR EL ID DEL IMPUESTO EN EL INPUT HIDDEN    
+
+
+                	// IMPRIMIR EL SELECT DE LOS PRECIOS UNITARIOS
+                	j('select[name="precio_uni"').hide();
                 	var respo = "";
                 	var selected = "";
                 	selected = (data[0]['id'] == 1) ? 'selected' : "";
 
-                	respo += '<select data-placeholder="Seleccione una opción" name="precio_unitario" id="precio_unitario" class="custom-select chosen">';
+                	respo += '<select data-placeholder="Seleccione una opción" name="precio_unitario" id="precio_unitario" class="custom-select">';
                 	respo += '<option value="'+data[0]['precio_venta1']+'" '+selected+'>'+data[0]['precio_venta1']+'</option>';
                 	respo += '<option value="'+data[0]['precio_venta2']+'">'+data[0]['precio_venta2']+'</option>';
                 	respo += '</select>'
-                	$('td[id="precios"').html(respo);
+                	j('td[id="precios"').html(respo);
 
+                	j('input[name="cantidad"]').focus(); // PARA QUE 
+                	j('input[name="cantidad"]').numeric();
+					var cantidad = j('input[name="cantidad"]').val();
+					calcularTotales(cantidad);
+					agregarFila();
                 },
                 error: function (xhr) {
                 	var result = "";
@@ -207,10 +231,88 @@
                 			result += "<li>"+xhr.responseJSON.errors[i]+"</li>"
                 		}
                 	}
-                	$('#errores').html('<div class="alert alert-danger alert-dismissible fade show"><ul>'+result+'</ul><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+                	j('#errores').html('<div class="alert alert-danger alert-dismissible fade show"><ul>'+result+'</ul><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
                 }
             }, "json")
 		})
+	};
+
+	// CADA QUE SE MODIFIQUE LA CANTIDAD A FACTURAR SE RECALCULEN LOS TOTALES
+	j(document).ready(function() {
+		j('input[name="cantidad"]').keyup(function(){ 
+			var cantidad = this.value;
+			calcularTotales(cantidad);	
+		});
+	});
+
+	// CALCULAR LOS PRECIOS LUEGO DE SELECCIOAR EL PRODUCTO
+	function calcularTotales(cantidad){
+		j('input[name="cantidad"]').numeric();
+		var porc_descuento = j('input[name="porc_descuento"]').val();
+		var precio_unitario = j('select[name="precio_unitario"').val();
+		var porc_impuesto = j('input[name="impuesto"').val();
+
+		var porc_des = porc_descuento.split('%');
+		var porc_imp = porc_impuesto.split('%');
+
+		// CALCULAR PRECIO UNITARIO POR LA CANTIDAD A FACTURAR
+		precio_unitario1 = parseFloat(precio_unitario) * parseFloat(cantidad);
+
+		// CALCULAR VALOR DEL DESCUENTO EN BASE AL PRECIO UNITARIO FINAL
+		valor_descuento = (parseFloat(porc_des[0]/100)) * parseFloat(precio_unitario1);
+
+		// CALULO DEL PRIMER TOTAL
+		total1 = parseFloat(precio_unitario1) - parseFloat(valor_descuento);
+
+		// CALCULO DEL IMPUESTO
+		porc_impuesto1 = (parseFloat(porc_imp[0])/100) * parseFloat(total1);
+
+		// CALCULO DEL TOTAL FINAL
+		total = parseFloat(total1) + parseFloat(porc_impuesto1);
+		total = number_format(total,2);
+		valor_descuento = number_format(valor_descuento,2);
+
+		j('input[name="valor_descuento"]').val(valor_descuento);
+		j('input[name="precio_total"]').val(total);
 	}
+
+	// AGREGAR NUEVA FILA A LA TABLA LUEGO DE SELECCIONAR EL PRODUCTO
+	function agregarFila() {
+		j(".chosen-2").chosen({
+			width:'100%',
+			no_results_text:'No hay resultados para:'
+		});
+		var html = 
+		'<tr>'+
+			'<td  width="12%"><input disabled type="text" name="codigo" id="codigo" class="form-control" value=""></td>'+
+			'<td>'+
+				'<select data-placeholder="Seleccione una opción" name="producto" id="producto" class="" onchange="cargarProducto($(this).val())">'+
+				'<option value=""></option>'+
+				@foreach ($productos as $producto)
+				'<option value="{{ $producto->id }}" > {{ $producto->descripcion}} </option>'+
+				@endforeach
+				'</select>'+
+			'</td>'+
+			'<td width="10%"><input disabled type="text" name="unidadmedida" id="unidadmedida" class="form-control" value=""></td>'+
+			'<td id="precios">'+
+				'<select disabled data-placeholder="Seleccione una opción" name="precio_uni" id="precio_unitario" class="custom-select">'+
+				'</select>'+
+			'</td>'+
+			'<td width="8%"><input disabled type="number" min="1" name="cantidad" id="cantidad" class="form-control" value=""></td>'+
+			'<td  width="5%"><input disabled type="text" name="porc_descuento" id="porc_descuento" class="form-control" value=""></td>'+
+			'<td><input disabled type="text" name="valor_descuento" id="valor_descuento" class="form-control" value=""></td>'+
+			'<td width="5%"><input disabled type="text" name="impuesto" id="impuesto" class="form-control" value=""></td>'+
+			'<td><input disabled type="text" name="precio_total" id="precio_total" class="form-control" value=""></td>'+
+			'<td align="center">'+
+				'<div class="btn-group">'+
+					// '<button class="btn btn-outline-primary btn-sm col-sm-6" title="Editar"><i class="fa fa-pencil-alt"></i></button>'+
+					'<button class="btn btn-outline-danger btn-sm col-sm-12" title="Borrar"><i class="fa fa-trash"></i></button>'+
+				'</div>'+
+			'</td>'+
+		'</tr>';
+		j('#table-factura tbody').append(html);
+		j('select[name="producto"]').attr('class', 'chosen');
+	}
+
 </script>
 @endsection
