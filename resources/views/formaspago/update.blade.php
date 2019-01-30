@@ -14,19 +14,19 @@
 					@csrf
 					<div class="form-group row">
 						<label for="descripcion" class="col-md-4 col-xs-12 col-form-label">Descripción:</label>
-						<div class="col-md-8 col-xs-12 col-form-label">
+						<div class="col-md-8 col-xs-12">
 							<input required type="text" name="descripcion" class="form-control" value="{{$formaspagos->descripcion}}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="dias" class="col-md-4 col-xs-12 col-form-label">Dias:</label>
-						<div class="col-md-8 col-xs-12 col-form-label">
+						<div class="col-md-8 col-xs-12">
 							<input required type="number" min="0" name="dias" class="form-control" value="{{$formaspagos->dias}}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="status" class="col-md-4 col-xs-12 col-form-label">Status:</label>
-						<div class="col-md-8 col-xs-12 col-form-label">
+						<div class="col-md-8 col-xs-12">
 							<select name="status" id="status" class="custom-select">
 								<option value="1" {{\Basics::selected(1,$formaspagos->status)}}>Activo</option>
 								<option value="0" {{\Basics::selected(0,$formaspagos->status)}}>Inactivo</option>
