@@ -1,18 +1,11 @@
 @extends('layouts.principal')
 @section('title') Facturaci&oacute;n @endsection
 @section('content')
-	<style type="text/css" media="screen">
-		.borde{
-			border-top: 1px solid black;
-			padding-top: 20px;
-		}
-	</style>
 	{!!\Basics::Breadcrumb(['Maestros','Facturaci&oacute;n'])!!}
 	<div class="">
 		<div class="card">
 			<div class="card-header">
 				<h3>Nueva Factura</h3>
-				<div class="select_aqui"></div>
 			</div>
 			<div class="card-body">
 				{!!\Basics::printErrors($errors->any(),$errors->all())!!}
@@ -21,8 +14,8 @@
 				<form action="" method="POST" accept-charset="utf-8"  class="cliente col-12">
 					@csrf
 					<div class="form-group row">
-						<label for="seleccioncliente" class="col-md-2 col-form-label">Cliente:</label>
-						<div class="col-md-2">
+						<label for="seleccioncliente" class="col-sm-2 col-form-label">Cliente:</label>
+						<div class="col-sm-2">
 							<select data-placeholder="Seleccione una opción" name="cliente" class="chosen" >
 								<option value=""></option>
 								@foreach ($clientes as $cliente)
@@ -30,14 +23,14 @@
 								@endforeach
 							</select>
 						</div>
-						<label for="fecha" class="col-md-2 col-form-label">Fecha:</label>
-						<div class="col-md-2">
+						<label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
+						<div class="col-sm-2">
 							<input required type="date" name="fecha" id="fecha" max="" class="form-control fecha" value="{{old('fecha')}}">
 						</div>
 					</div>	
 					<div class="form-group row">
-						<label for="formasdepago" class="col-md-2 col-form-label">Forma de Pago:</label>
-						<div class="col-md-2">
+						<label for="formasdepago" class="col-sm-2 col-form-label">Forma de Pago:</label>
+						<div class="col-sm-2">
 							<select data-placeholder="Seleccione una opción" name="formadepago" class="chosen" onchange="updateFechVenc($(this).val())">
 
 								<option value=""></option>
@@ -47,8 +40,8 @@
 								@endforeach
 							</select>
 						</div>
-						<label for="vencimiento" class="col-md-2 col-form-label">Vencimiento:</label>
-						<div class="col-md-2">
+						<label for="vencimiento" class="col-sm-2 col-form-label">Vencimiento:</label>
+						<div class="col-sm-2">
 							<input disabled type="date" name="fecha_vencimiento" id="fecha_vencimiento" class="form-control" value="">
 						</div>
 					</div>
@@ -56,13 +49,13 @@
 					<hr>
 				{{-- DETALLE DE FACTURA --}}
 					<div class="space-20"></div>
-					<div class="table-responsive-md">
+					<div class="table-responsive-sm">
 
 
-						<div class="form-group text-center table-responsive-md">
+						<div class="form-group text-center table-responsive-sm">
 							<h5><b>Detalle de Factura</b></h5>
 						</div>
-						<table id="table-factura" class="table tabla-responsiva table-md">
+						<table id="table-factura" class="table tabla-responsiva table-sm">
 							<thead>
 								<tr>
 									<th>Codigo</th>
@@ -81,7 +74,7 @@
 								<tr>
 									<td  width="12%"><input disabled type="text" name="codigo[]" id="codigo" class="form-control" value=""></td>
 									<td>
-										<select data-placeholder="Seleccione una opción" name="producto[]" id="producto" class="chosen select_prueba">
+										<select data-placeholder="Seleccione una opción" name="producto[]" id="producto" class="chosen" onchange="cargarProducto($(this).val())">
 											<option value=""></option>
 											@foreach ($productos as $producto)
 												<option value="{{ $producto->id }}" > {{ $producto->descripcion}} </option>
@@ -94,8 +87,8 @@
 										</select>
 									</td>
 									<td width="8%"><input disabled type="number" min="1" name="cantidad[]" id="cantidad" class="form-control" value=""></td>
-									<td  width="6%"><input disabled type="text" name="porc_descuento[]" id="porc_descuento" class="form-control" value=""></td>
-									<td><input disabled type="text" name="valor_descuento[]" id="valor_descuento" class="form-control" value=""></td>
+									<td  width="5%"><input disabled type="text" name="porc_descuento[]" id="porc_descuento" class="form-control" value=""></td>
+									<td><input disabled type="text" name="valor_descuento" id="valor_descuento" class="form-control" value=""></td>
 									<td width="5%"><input disabled type="text" name="impuesto[]" id="impuesto" class="form-control" value=""></td>
 									<td><input disabled type="text" name="precio_total[]" id="precio_total" class="form-control" value=""></td>
 									<td align="center">
@@ -105,25 +98,24 @@
 										</div>
 									</td>
 								</tr>
-								
+								<tr>
+									<th colspan="7" class="text-right">Total Sin Impuestos</th>
+									<td colspan="2"><input type="text" value="00,00" name="total_sin_impuesto" id="total_sin_impuesto" class="form-control" ></td>
+								</tr>
+								<tr>
+									<th colspan="7" class="text-right">Total de Impuestos</th>
+									<td colspan="2"><input type="text" value="00,00" name="total_impuestos" id="total_impuestos" class="form-control" ></td>
+
+								</tr>
+								<tr>
+									<th colspan="7" class="text-right">Total a Pagar</th>
+									<td colspan="2"><input type="text" value="00,00" name="total_pagar" id="total_pagar" class="form-control" ></td>
+
+								</tr>
 							</tbody>
 						</table>
-					
-						<div class="col-md-4 form-group offset-md-8 offset-xs-8 row" style="border-top: 1px solid #dee2e6; padding-top: 10px;">
-							<label class="col-form-label col-md-6 font-weight-bold">Total Sin Impuestos:</label>
-							<div class="col-md-6"><input readonly type="text" value="00,00" name="total_sin_impuesto" id="total_sin_impuesto" class="form-control" ></div>
-						</div>
-						<div class="col-md-4 form-group offset-md-8 offset-xs-8 row" style="border-top: 1px solid #dee2e6; padding-top: 10px;">
-							<label class="col-form-label col-md-6 font-weight-bold">Total de Impuestos:</label>
-							<div class="col-md-6"><input readonly type="text" value="00,00" name="total_impuestos" id="total_impuestos" class="form-control" ></div>
-						</div>
-						<div class="col-md-4 form-group offset-md-8 offset-xs-8 row" style="border-top: 1px solid #dee2e6; padding-top: 10px;">
-							<label class="col-form-label col-md-6 font-weight-bold">Total a Pagar:</label>
-							<div class="col-md-6"><input readonly type="text" value="00,00" name="total_pagar" id="total_pagar" class="form-control"></div>
-						</div>
 						<input type="hidden" name="unidmed_id[]" id="unidmed_id" value="">
 						<input type="hidden" name="impuesto_id[]" id="impuesto_id" value="">
-					
 				</form>
 			</div>
 		</div>
@@ -152,12 +144,6 @@
 			width:'100%',
 			no_results_text:'No hay resultados para:'
 		});
-
-		// j('.select_prueba').on('change',function(){
-		// 	j('.select_aqui').append('<select data-placeholder="Seleccione una opción" name="producto[]" id="" class="chosen"><option>1</option><option>2</option><option>3</option><option>4</option></select>')
-		// 	j('.select_aqui').addClass('select_prueba')
-		// 	j('.chosen').chosen().trigger("chosen:updated")
-		// })
 
 	});
 
@@ -209,65 +195,61 @@
 	};
 
 	// CARGAR TODOS LOS DATOS DE LOS PRODUCTOS
-	j(function(){
+	function cargarProducto(producto_id){
+		j(function(){
+			j.ajaxSetup({
+			    headers: {
+			        'X-CSRF-TOKEN': j('meta[name="csrf-token"]').attr('content')
+			    }
+			});
+			j.ajax({
+				type: "POST",
+				dataType: 'json',
+				url: "{{ route('ventaspos.facturacion.getproducto') }}",
+				data:{'producto_id' : producto_id} ,
+                success: function (data) {
 
-		j('.select_prueba').on('change', function() {
-			var producto_id = this.value;
-			j(function(){
-				j.ajaxSetup({
-				    headers: {
-				        'X-CSRF-TOKEN': j('meta[name="csrf-token"]').attr('content')
-				    }
-				});
-				j.ajax({
-					type: "POST",
-					dataType: 'json',
-					url: "{{ route('ventaspos.facturacion.getproducto') }}",
-					data:{'producto_id' : producto_id} ,
-	                success: function (data) {
-
-	                	// LAS POSICIONES 0,1,2 SE TOMAN JSON QUE LLEGA DESDE EL CONTROLADOR PARA TOMAR LAS FORANEAS
-	                	j('input[name="codigo[]"]').val(data[0].codigo_barrra);
-	                	j('input[name="unidadmedida[]"]').val(data[1].descripcion);
-	                	j('input[name="unidmed_id[]"]').val(data[1].id); // PARA PASAR EL ID DE UNID-MED EN EL INPUT HIDDEN
-	                	j('input[name="cantidad[]"]').removeAttr('disabled').val('1');
-	                	//$('input[name="precio_unitario"]').val(data[0].precio_venta1); // ESTO DEBE SER UN SELECT
-	                	j('input[name="porc_descuento[]"]').val(data[0].porcentaje_descuento+'%');
-	                	j('input[name="impuesto[]"]').val(data[2].descripcion+'%');
-	                	j('input[name="impuesto_id[]"]').val(data[2].id); // PARA PASAR EL ID DEL IMPUESTO EN EL INPUT HIDDEN    
+                	// LAS POSICIONES 0,1,2 SE TOMAN JSON QUE LLEGA DESDE EL CONTROLADOR PARA TOMAR LAS FORANEAS
+                	j('input[name="codigo[]"]').val(data[0].codigo_barrra);
+                	j('input[name="unidadmedida[]"]').val(data[1].descripcion);
+                	j('input[name="unidmed_id[]"]').val(data[1].id); // PARA PASAR EL ID DE UNID-MED EN EL INPUT HIDDEN
+                	j('input[name="cantidad[]"]').removeAttr('disabled').val('1');
+                	//$('input[name="precio_unitario"]').val(data[0].precio_venta1); // ESTO DEBE SER UN SELECT
+                	j('input[name="porc_descuento[]"]').val(data[0].porcentaje_descuento+'%');
+                	j('input[name="impuesto[]"]').val(data[2].descripcion+'%');
+                	j('input[name="impuesto_id[]"]').val(data[2].id); // PARA PASAR EL ID DEL IMPUESTO EN EL INPUT HIDDEN    
 
 
-	                	// IMPRIMIR EL SELECT DE LOS PRECIOS UNITARIOS
-	                	j('select[name="precio_uni[]"').hide();
-	                	var respo = "";
-	                	var selected = "";
-	                	selected = (data[0]['id'] == 1) ? 'selected' : "";
+                	// IMPRIMIR EL SELECT DE LOS PRECIOS UNITARIOS
+                	j('select[name="precio_uni[]"').hide();
+                	var respo = "";
+                	var selected = "";
+                	selected = (data[0]['id'] == 1) ? 'selected' : "";
 
-	                	respo += '<select data-placeholder="Seleccione una opción" name="precio_unitario[]" id="precio_unitario" class="custom-select">';
-	                	respo += '<option value="'+data[0]['precio_venta1']+'" '+selected+'>'+data[0]['precio_venta1']+'</option>';
-	                	respo += '<option value="'+data[0]['precio_venta2']+'">'+data[0]['precio_venta2']+'</option>';
-	                	respo += '</select>'
-	                	j('td[id="precios"').html(respo);
+                	respo += '<select data-placeholder="Seleccione una opción" name="precio_unitario[]" id="precio_unitario" class="custom-select">';
+                	respo += '<option value="'+data[0]['precio_venta1']+'" '+selected+'>'+data[0]['precio_venta1']+'</option>';
+                	respo += '<option value="'+data[0]['precio_venta2']+'">'+data[0]['precio_venta2']+'</option>';
+                	respo += '</select>'
+                	j('td[id="precios"').html(respo);
 
-	                	j('input[name="cantidad[]"]').focus(); // PARA QUE 
-	                	j('input[name="cantidad[]"]').numeric();
-						var cantidad = j('input[name="cantidad[]"]').val();
-						calcularTotales(cantidad);
-						agregarFila();
-	                },
-	                error: function (xhr) {
-	                	var result = "";
-	                	if(xhr.responseJSON.errors) {
-	                		for(i in xhr.responseJSON.errors) {
-	                			result += "<li>"+xhr.responseJSON.errors[i]+"</li>"
-	                		}
-	                	}
-	                	j('#errores').html('<div class="alert alert-danger alert-dismissible fade show"><ul>'+result+'</ul><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
-	                }
-	            }, "json")
-			})
-		});
-	});
+                	j('input[name="cantidad[]"]').focus(); // PARA QUE 
+                	j('input[name="cantidad[]"]').numeric();
+					var cantidad = j('input[name="cantidad[]"]').val();
+					calcularTotales(cantidad);
+					agregarFila();
+                },
+                error: function (xhr) {
+                	var result = "";
+                	if(xhr.responseJSON.errors) {
+                		for(i in xhr.responseJSON.errors) {
+                			result += "<li>"+xhr.responseJSON.errors[i]+"</li>"
+                		}
+                	}
+                	j('#errores').html('<div class="alert alert-danger alert-dismissible fade show"><ul>'+result+'</ul><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+                }
+            }, "json")
+		})
+	};
 
 	// CADA QUE SE MODIFIQUE LA CANTIDAD A FACTURAR SE RECALCULEN LOS TOTALES
 	j(document).ready(function() {
@@ -285,9 +267,6 @@
 		var total_impuestos = porc_impuesto1; // sumar todos porc_impuesto1[i]; 
 
 		var total_pagar = total; // sumar todos total[i];
-		total_sin_impuesto = number_format(total_sin_impuesto,2);
-		total_impuestos = number_format(total_impuestos,2);
-		total_pagar = number_format(total_pagar,2);
 		j('input[name="total_sin_impuesto"]').val(total_sin_impuesto);		
 		j('input[name="total_impuestos"]').val(total_impuestos);
 		j('input[name="total_pagar"]').val(total_pagar);
@@ -333,7 +312,7 @@
 		'<tr>'+
 			'<td  width="12%"><input disabled type="text" name="codigo[]" id="codigo" class="form-control" value=""></td>'+
 			'<td>'+
-				'<select data-placeholder="Seleccione una opción" name="producto[]" id="producto" class="select_prueba chosen">'+
+				'<select data-placeholder="Seleccione una opción" name="producto[]" id="producto" class="" onchange="cargarProducto($(this).val())">'+
 				'<option value=""></option>'+
 				@foreach ($productos as $producto)
 				'<option value="{{ $producto->id }}" > {{ $producto->descripcion}} </option>'+
@@ -342,7 +321,7 @@
 			'</td>'+
 			'<td width="10%"><input disabled type="text" name="unidadmedida[]" id="unidadmedida" class="form-control" value=""></td>'+
 			'<td id="precios">'+
-				'<select disabled data-placeholder="Seleccione una opción" name="precio_uni[]" id="precio_unitario" class="custom-select">'+
+				'<select disabled data-placeholder="Seleccione una opción" name="precio_uni[]" id="precio_unitario" class="custom-select chosen">'+
 				'</select>'+
 			'</td>'+
 			'<td width="8%"><input disabled type="number" min="1" name="cantidad[]" id="cantidad" class="form-control" value=""></td>'+
@@ -358,7 +337,6 @@
 			'</td>'+
 		'</tr>';
 		j('#table-factura tbody').append(html);
-		j('.chosen').chosen().trigger("chosen:updated");
 	}
 
 </script>
