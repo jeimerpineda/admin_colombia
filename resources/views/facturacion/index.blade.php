@@ -62,7 +62,7 @@
 						<div class="form-group text-center table-responsive-md">
 							<h5><b>Detalle de Factura</b></h5>
 						</div>
-						<table id="table-factura" class="table tabla-responsiva table-md">
+						<table id="table-factura" class="table tabla-responsiva table-md table-factura">
 							<thead>
 								<tr>
 									<th>Codigo</th>
@@ -153,11 +153,9 @@
 			no_results_text:'No hay resultados para:'
 		});
 
-		// j('.select_prueba').on('change',function(){
-		// 	j('.select_aqui').append('<select data-placeholder="Seleccione una opción" name="producto[]" id="" class="chosen"><option>1</option><option>2</option><option>3</option><option>4</option></select>')
-		// 	j('.select_aqui').addClass('select_prueba')
-		// 	j('.chosen').chosen().trigger("chosen:updated")
-		// })
+		j('.select_prueba').on('change', function() {
+			cargarProducto(this.value);
+		});
 
 	});
 
@@ -209,65 +207,61 @@
 	};
 
 	// CARGAR TODOS LOS DATOS DE LOS PRODUCTOS
-	j(function(){
+	function cargarProducto(producto_id){
+		j(function(){
+			j.ajaxSetup({
+			    headers: {
+			        'X-CSRF-TOKEN': j('meta[name="csrf-token"]').attr('content')
+			    }
+			});
+			j.ajax({
+				type: "POST",
+				dataType: 'json',
+				url: "{{ route('ventaspos.facturacion.getproducto') }}",
+				data:{'producto_id' : producto_id} ,
+                success: function (data) {
 
-		j('.select_prueba').on('change', function() {
-			var producto_id = this.value;
-			j(function(){
-				j.ajaxSetup({
-				    headers: {
-				        'X-CSRF-TOKEN': j('meta[name="csrf-token"]').attr('content')
-				    }
-				});
-				j.ajax({
-					type: "POST",
-					dataType: 'json',
-					url: "{{ route('ventaspos.facturacion.getproducto') }}",
-					data:{'producto_id' : producto_id} ,
-	                success: function (data) {
-
-	                	// LAS POSICIONES 0,1,2 SE TOMAN JSON QUE LLEGA DESDE EL CONTROLADOR PARA TOMAR LAS FORANEAS
-	                	j('input[name="codigo[]"]').val(data[0].codigo_barrra);
-	                	j('input[name="unidadmedida[]"]').val(data[1].descripcion);
-	                	j('input[name="unidmed_id[]"]').val(data[1].id); // PARA PASAR EL ID DE UNID-MED EN EL INPUT HIDDEN
-	                	j('input[name="cantidad[]"]').removeAttr('disabled').val('1');
-	                	//$('input[name="precio_unitario"]').val(data[0].precio_venta1); // ESTO DEBE SER UN SELECT
-	                	j('input[name="porc_descuento[]"]').val(data[0].porcentaje_descuento+'%');
-	                	j('input[name="impuesto[]"]').val(data[2].descripcion+'%');
-	                	j('input[name="impuesto_id[]"]').val(data[2].id); // PARA PASAR EL ID DEL IMPUESTO EN EL INPUT HIDDEN    
+                	// LAS POSICIONES 0,1,2 SE TOMAN JSON QUE LLEGA DESDE EL CONTROLADOR PARA TOMAR LAS FORANEAS
+                	j('input[name="codigo[]"]').val(data[0].codigo_barrra);
+                	j('input[name="unidadmedida[]"]').val(data[1].descripcion);
+                	j('input[name="unidmed_id[]"]').val(data[1].id); // PARA PASAR EL ID DE UNID-MED EN EL INPUT HIDDEN
+                	j('input[name="cantidad[]"]').removeAttr('disabled').val('1');
+                	//$('input[name="precio_unitario"]').val(data[0].precio_venta1); // ESTO DEBE SER UN SELECT
+                	j('input[name="porc_descuento[]"]').val(data[0].porcentaje_descuento+'%');
+                	j('input[name="impuesto[]"]').val(data[2].descripcion+'%');
+                	j('input[name="impuesto_id[]"]').val(data[2].id); // PARA PASAR EL ID DEL IMPUESTO EN EL INPUT HIDDEN    
 
 
-	                	// IMPRIMIR EL SELECT DE LOS PRECIOS UNITARIOS
-	                	j('select[name="precio_uni[]"').hide();
-	                	var respo = "";
-	                	var selected = "";
-	                	selected = (data[0]['id'] == 1) ? 'selected' : "";
+                	// IMPRIMIR EL SELECT DE LOS PRECIOS UNITARIOS
+                	j('select[name="precio_uni[]"').hide();
+                	var respo = "";
+                	var selected = "";
+                	selected = (data[0]['id'] == 1) ? 'selected' : "";
 
-	                	respo += '<select data-placeholder="Seleccione una opción" name="precio_unitario[]" id="precio_unitario" class="custom-select">';
-	                	respo += '<option value="'+data[0]['precio_venta1']+'" '+selected+'>'+data[0]['precio_venta1']+'</option>';
-	                	respo += '<option value="'+data[0]['precio_venta2']+'">'+data[0]['precio_venta2']+'</option>';
-	                	respo += '</select>'
-	                	j('td[id="precios"').html(respo);
+                	respo += '<select data-placeholder="Seleccione una opción" name="precio_unitario[]" id="precio_unitario" class="custom-select">';
+                	respo += '<option value="'+data[0]['precio_venta1']+'" '+selected+'>'+data[0]['precio_venta1']+'</option>';
+                	respo += '<option value="'+data[0]['precio_venta2']+'">'+data[0]['precio_venta2']+'</option>';
+                	respo += '</select>'
+                	j('td[id="precios"').html(respo);
 
-	                	j('input[name="cantidad[]"]').focus(); // PARA QUE 
-	                	j('input[name="cantidad[]"]').numeric();
-						var cantidad = j('input[name="cantidad[]"]').val();
-						calcularTotales(cantidad);
-						agregarFila();
-	                },
-	                error: function (xhr) {
-	                	var result = "";
-	                	if(xhr.responseJSON.errors) {
-	                		for(i in xhr.responseJSON.errors) {
-	                			result += "<li>"+xhr.responseJSON.errors[i]+"</li>"
-	                		}
-	                	}
-	                	j('#errores').html('<div class="alert alert-danger alert-dismissible fade show"><ul>'+result+'</ul><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
-	                }
-	            }, "json")
-			})
-		});
-	});
+                	j('input[name="cantidad[]"]').focus(); // PARA QUE 
+                	j('input[name="cantidad[]"]').numeric();
+					var cantidad = j('input[name="cantidad[]"]').val();
+					calcularTotales(cantidad);
+					agregarFila();
+                },
+                error: function (xhr) {
+                	var result = "";
+                	if(xhr.responseJSON.errors) {
+                		for(i in xhr.responseJSON.errors) {
+                			result += "<li>"+xhr.responseJSON.errors[i]+"</li>"
+                		}
+                	}
+                	j('#errores').html('<div class="alert alert-danger alert-dismissible fade show"><ul>'+result+'</ul><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+                }
+            }, "json")
+		})
+	};
 
 	// CADA QUE SE MODIFIQUE LA CANTIDAD A FACTURAR SE RECALCULEN LOS TOTALES
 	j(document).ready(function() {
@@ -295,7 +289,7 @@
 
 	// CALCULAR LOS PRECIOS LUEGO DE SELECCIOAR EL PRODUCTO
 	function calcularTotales(cantidad){
-		j('input[name="cantidad[]"]').numeric();
+		j('input[name="cantidad[]"]').numeric().length;
 		var porc_descuento = j('input[name="porc_descuento[]"]').val();
 		var precio_unitario = j('select[name="precio_unitario[]"').val();
 		var porc_impuesto = j('input[name="impuesto[]"').val();
@@ -358,7 +352,20 @@
 			'</td>'+
 		'</tr>';
 		j('#table-factura tbody').append(html);
-		j('.chosen').chosen().trigger("chosen:updated");
+		j('.chosen').chosen({width:'100%',no_results_text:'No hay resultados para:'}).trigger("chosen:updated");
+		
+		j('.select_prueba').on('change', function() {
+			cargarProducto(this.value);
+		});
+
+		j('input[name="cantidad[]"]').keyup(function(){ 
+			var cantidad = this.value;
+			calcularTotales(cantidad);	
+		});
+
+		// alert(j('input[name="valor_descuento[]"]').length);
+
+		
 	}
 
 </script>
