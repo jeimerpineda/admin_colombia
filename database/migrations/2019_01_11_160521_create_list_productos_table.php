@@ -46,7 +46,7 @@ class CreateListProductosTable extends Migration
      */
     public function down()
     {
-         Schema::table('list_productos', function (Blueprint $table) {
+         Schema::table('productos', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropForeign(['unimed_id']);
             $table->dropForeign(['empre_id']);
