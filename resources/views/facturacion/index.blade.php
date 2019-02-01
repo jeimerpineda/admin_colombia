@@ -327,7 +327,7 @@
 		'<tr>'+
 			'<td  width="12%"><input disabled type="text" name="codigo[]" id="codigo" class="form-control" value=""></td>'+
 			'<td>'+
-				'<select data-placeholder="Seleccione una opción" name="producto[]" id="producto" class="select_prueba chosen">'+
+				'<select data-placeholder="Seleccione una opción" name="producto[]" id="producto" class="select_prueba chosen" onchange="cargarProducto($(this).val())">'+
 				'<option value=""></option>'+
 				@foreach ($productos as $producto)
 				'<option value="{{ $producto->id }}" > {{ $producto->descripcion}} </option>'+
@@ -354,9 +354,9 @@
 		j('#table-factura tbody').append(html);
 		j('.chosen').chosen({width:'100%',no_results_text:'No hay resultados para:'}).trigger("chosen:updated");
 		
-		j('.select_prueba').on('change', function() {
-			cargarProducto(this.value);
-		});
+		// j('.select_prueba').on('change', function() {
+		// 	cargarProducto(this.value);
+		// });
 
 		j('input[name="cantidad[]"]').keyup(function(){ 
 			var cantidad = this.value;
