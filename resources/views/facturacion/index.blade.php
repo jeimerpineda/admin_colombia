@@ -317,7 +317,7 @@
 
 		// CALCULO DEL TOTAL FINAL
 		total = parseFloat(total1) + parseFloat(porc_impuesto1);
-		total_fin = number_format(total1,2);
+		total_fin = number_format(total,2);
 		valor_descuento = number_format(valor_descuento,2);
 
 		j('input[name="valor_descuento[]"]').val(valor_descuento);
