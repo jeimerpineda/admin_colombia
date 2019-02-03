@@ -2,7 +2,7 @@
 @section('title') Eliminar Formas de Pago @endsection
 @section('content')
 	{!!\Basics::Breadcrumb(['Configuración','Formas de Pago','Eliminar'])!!}
-	<div class="col-8 offset-2">
+	<div class="col-xs-6 col-md-6 offset-md-3 offset-xs-3">
 		<div class="card">
 			<div class="card-header">
 				Eliminar Formas de Pago
@@ -11,23 +11,23 @@
 				<div class="alert alert-info">
 					Esta acción borrará el registro de la base de datos. ¿Está segur@ que desea continuar?
 				</div>
-				<form action="{{route('config.formasdepago.delete.form')}}" id="form_bancos" method="POST" class="col-8 offset-2">
+				<form action="{{route('config.formasdepago.delete.form')}}" id="form_bancos" method="POST" class="col-md-8 col-xs-6 col-form-label offset-md-2 offset-xs-3">
 					@csrf
 					<div class="form-group row">
-						<label for="descripcion" class="col-2 col-form-label">Descripcion:</label>
-						<div class="col-10">
-							<input readonly type="text" name="descripcion" class="form-control" value="{{$formaspago->descripcion}}">
+						<label for="descripcion" class="col-md-4 col-xs-12 col-form-label">Descripción:</label>
+						<div class="col-md-8 col-xs-12">
+							<input disabled="" readonly type="text" name="descripcion" class="form-control" value="{{$formaspago->descripcion}}">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="dias" class="col-2 col-form-label">Dias:</label>
-						<div class="col-10">
-							<input required type="number" name="dias" class="form-control" value="{{$formaspago->dias}}">
+						<label for="dias" class="col-md-4 col-xs-12 col-form-label">Dias:</label>
+						<div class="col-md-8 col-xs-12">
+							<input disabled required type="number" name="dias" class="form-control" value="{{$formaspago->dias}}">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="status" class="col-2 col-form-label">Status:</label>
-						<div class="col-10">
+						<label for="status" class="col-md-4 col-xs-12 col-form-label">Status:</label>
+						<div class="col-md-8 col-xs-12">
 							<select disabled name="status" id="status" class="custom-select">
 								<option value="1" {{\Basics::selected(1,$formaspago->status)}}>Activo</option>
 								<option value="0" {{\Basics::selected(0,$formaspago->status)}}>Inactivo</option>
