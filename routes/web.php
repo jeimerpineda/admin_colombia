@@ -40,6 +40,7 @@ Route::get('/config/unidadmedida/update/{unidmed_id}')->uses('UnidadMedidaContro
 Route::post('/config/unidadmedida/update/form')->uses('UnidadMedidaController@updateForm')->name('config.unidadmedida.update.form')->middleware('auth');
 Route::get('/config/unidadmedida/delete/{unidmed_id}')->uses('UnidadMedidaController@deletePage')->name('config.unidadmedida.delete')->middleware('auth');
 Route::post('/config/unidadmedida/delete/form')->uses('UnidadMedidaController@deleteForm')->name('config.unidadmedida.delete.form')->middleware('auth');
+Route::post('/config/unidadmedida/insert/form/fast')->uses('UnidadMedidaController@insertFormFast')->name('config.unidadmedida.insert.form.fast')->middleware('auth');
 
 //Impuestos
 Route::get('/config/impuestos/')->uses('ImpuestosController@index')->name('config.impuestos')->middleware('auth');
@@ -50,8 +51,15 @@ Route::post('/config/impuestos/update/form')->uses('ImpuestosController@updateFo
 Route::get('/config/impuestos/delete/{impuesto_id}')->uses('ImpuestosController@deletePage')->name('config.impuestos.delete')->middleware('auth');
 Route::post('/config/impuestos/delete/form')->uses('ImpuestosController@deleteForm')->name('config.impuestos.delete.form')->middleware('auth');
 
+
+// Route::get('/ventaspos/facturacion/')->uses('facturacionController@index')->name('ventaspos.facturacion')->middleware('auth');
+
+// Route::post('/config/impuestos/insert/form/fast')->uses('ImpuestosController@insertFormFast')->name('config.impuestos.insert.form.fast')->middleware('auth');
+
 // Facturación
 Route::get('/ventaspos/facturacion/')->uses('facturacionController@index')->name('ventaspos.facturacion')->middleware('auth');
+Route::post('ventaspos/facturacion/producto')->uses('facturacionController@getProducto')->name('ventaspos.facturacion.getproducto')->middleware('auth');
+
 Route::get('/ventaspos/facturacion/insert')->uses('facturacionController@insertPage')->name('ventaspos.facturacion.insert')->middleware('auth');
 Route::post('/ventaspos/facturacion/insert/form')->uses('facturacionController@insertForm')->name('ventaspos.facturacion.insert.form')->middleware('auth');
 Route::get('/ventaspos/facturacion/update/{factura_id}')->uses('facturacionController@updatePage')->name('ventaspos.facturacion.update')->middleware('auth');
@@ -86,6 +94,10 @@ Route::post('/config/empresa/update/form')->uses('EmpresaController@updateForm')
 Route::get('/config/empresa/delete/{empresa_ide}')->uses('EmpresaController@deletePage')->name('config.empresa.delete')->middleware('auth');
 Route::post('/config/empresa/delete/form')->uses('EmpresaController@deleteForm')->name('config.empresa.delete.form')->middleware('auth');
 
+
+// =======
+// Route::post('/config/empresa/insert/form/fast')->uses('EmpresaController@insertFormFast')->name('config.empresa.insert.form.fast')->middleware('auth');
+// >>>>>>> pr/7
 
 //Clientes
 Route::get('/config/clientes/')->uses('ClientesController@index')->name('config.clientes')->middleware('auth');

@@ -59,4 +59,28 @@ class Basics {
 	public static function currentLink($var) {
 		return \Request::segment(1) == $var ? 'active' : '';
 	}
+
+	public static function modalHeader($size,$id,$title) {
+		$size_isset = ($size) ? 'modal-'.$size : '';
+		$html = '<div class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" aria-labelledby="modal_'.$id.'" aria-hidden="true">
+  			<div class="modal-dialog '.$size_isset.'" role="document">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<h5 class="modal-title" id="modal_'.$id.'">'.$title.'</h5>
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				<span aria-hidden="true">&times;</span>
+        			</button>
+      			</div>';
+      	return $html;
+	}
+
+	public static function modalFooter() {
+		$html = '<div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>';
+		return $html;
+	}
 }

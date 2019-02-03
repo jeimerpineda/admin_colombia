@@ -61,14 +61,6 @@ class ProductosController extends Controller
     	]);
     }
 
-    public function updatePage($producto_id) {
-    	$productos = \App\Productos::findOrFail($producto_id);
-    	$unidadmedida = \App\UnidadMedida::All();
-    	$empresas = \App\Empresa::All();
-    	$impuestos = \App\Impuestos::All();
-    	return view('productos.update',['producto'=>$productos],compact('unidadmedida','empresas','impuestos'));
-    }
-
     public function updateForm(Request $request) {
     	$data = $request->validate([
     		'codigo'=>'required',
@@ -121,8 +113,13 @@ class ProductosController extends Controller
     public function deleteForm(Request $request) {
     	$productos = \App\Productos::findOrFail($request->input('producto_id'));
     	$productos->delete();
-    	return redirect()->route('config.productos')->with([
-    		'message'=>$request->input('descripcion').' ha sido eliminado correctamente'
-    	]);
+        
+    public function updatePage($producto_ide) {
+    	$producto = \App\Productos::findOrFail($producto_ide);
+        $unidadmedida = \App\UnidadMedida::All();
+        $empresas = \App\Empresa::All();
+        $impuestos = \App\Impuestos::All();
+        return view('productos.update',compact('producto','unidadmedida','empresas','impuestos'));
     }
-    }
+
+}

@@ -15,8 +15,8 @@ class Productos extends Model
    public function unimed() {
    		return $this->belongsTo('App\UnidadMedida','unimed_id');
    }
-
    public function empresa()  {
    		return $this->belongsTo('App\Empresa','empre_id');
    }
+   
 }

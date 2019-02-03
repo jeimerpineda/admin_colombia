@@ -2,7 +2,7 @@
 @section('title') Agregar Banco @endsection
 @section('content')
 	{!!\Basics::Breadcrumb(['Configuración','Bancos','Agregar'])!!}
-	<div class="col-8 offset-2">
+	<div class="col-10 offset-1">
 		<div class="card">
 			<div class="card-header">
 				Agregar Banco
@@ -11,15 +11,17 @@
 				{!!\Basics::printErrors($errors->any(),$errors->all())!!}
 				<form action="{{route('config.bancos.insert.form')}}" id="form_bancos" method="POST" class="col-8 offset-2">
 					@csrf
-					<div class="form-group row">
-						<label for="descripcion" class="col-2 col-form-label">Nombre:</label>
-						<div class="col-10">
+
+					<div class="form-group row ">
+						<label for="descripcion" class="col-12 col-form-label">Nombre:</label>
+						<div class="col-12">
+
 							<input required type="text" name="descripcion" class="form-control" value="{{old('descripcion')}}">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="status" class="col-2 col-form-label">Status:</label>
-						<div class="col-10">
+						<label for="status" class="col-12 col-form-label">Status:</label>
+						<div class="col-12">
 							<select name="status" id="status" class="custom-select">
 								<option value="1" {{\Basics::selected(1,old('status'))}}>Activo</option>
 								<option value="0" {{\Basics::selected(0,old('status'))}}>Inactivo</option>

@@ -2,7 +2,9 @@
 @section('title') Actualizar Unidad de Medida @endsection
 @section('content')
 	{!!\Basics::Breadcrumb(['Configuración','Unidades de Medida','Actualizar'])!!}
-	<div class="col-8 offset-2">
+
+	<div class="col-10 offset-1">
+
 		<div class="card">
 			<div class="card-header">
 				Actualizar Unidad de Medida
@@ -13,14 +15,18 @@
 				<form action="{{route('config.unidadmedida.update.form')}}" id="form_unidadmedida" method="POST" class="col-8 offset-2">
 					@csrf
 					<div class="form-group row">
-						<label for="descripcion" class="col-3 col-form-label">Descripci&oacute;:</label>
-						<div class="col-9">
+
+						<label for="descripcion" class="col-12 col-form-label">Descripci&oacute;n:</label>
+						<div class="col-12">
+
 							<input required type="text" name="descripcion" class="form-control" value="{{$unidmed->descripcion}}">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="status" class="col-2 col-form-label">Status:</label>
-						<div class="col-10">
+
+						<label for="status" class="col-12 col-form-label">Status:</label>
+						<div class="col-12">
+
 							<select name="status" id="status" class="custom-select">
 								<option value="1" {{\Basics::selected(1,$unidmed->status)}}>Activo</option>
 								<option value="0" {{\Basics::selected(0,$unidmed->status)}}>Inactivo</option>

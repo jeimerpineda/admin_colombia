@@ -15,3 +15,5 @@
   .stacktable.large-only { display: none; }
   .stacktable.small-only { display: table; }
 }
+.tabla-responsiva { border-style: none none solid none ; border-color: #343a40 ;  border-collapse: inherit !important}
+}

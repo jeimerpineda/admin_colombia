@@ -41,6 +41,29 @@ class EmpresaController extends Controller
     	]);
     }
 
+    public function insertFormFast(Request $request) {
+        $data = $request->validate([
+            'nit'=>'required|unique:list_empresa,nit',
+            'razon'=>'required',
+            'direccion'=>'required',
+            'correo'=>'required',
+            'tlf1'=>'required',
+            'sucursal'=>'required',
+        ]);
+        $empresa = new \App\Empresa;
+        $user = \Auth::user();
+        $empresa->user_id = $user->id;
+        $empresa->nit = $request->input('nit');
+        $empresa->razon_social = $request->input('razon');
+        $empresa->direccion = $request->input('direccion');
+        $empresa->correo = $request->input('correo');
+        $empresa->telefono_principal = $request->input('tlf1');
+        $empresa->telefono_segundario = $request->input('tlf2');
+        $empresa->sucursal = $request->input('sucursal');
+        $empresa->save();
+        return response()->json(\App\Empresa::all());
+    }
+    
     public function updatePage($empresa_ide) {
     	$empresa = \App\Empresa::findOrFail($empresa_ide);
     	return view('empresa.update',['listempresa'=>$empresa]);

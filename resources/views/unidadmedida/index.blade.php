@@ -15,7 +15,9 @@
 			</div>
 		@else
 			<div class="table-responsive">
-				<table class="table">
+
+				<table class="table table-sm table-hover" id="card-table">
+
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -54,4 +56,11 @@
 			</div>
 		@endempty
 	</div>
+
+@endsection
+@section('js')
+<script>
+	$('#card-table').cardtable();
+</script>
+
 @endsection
