@@ -168,19 +168,6 @@
 		</div>
 	</div>
 
-@endsection
-@section('js')
-<script>
-	$(function(){
-		var j = jQuery.noConflict();
-		$(".chosen").chosen({
-			width:'100%',
-			no_results_text:'No hay resultados para:',
-			allow_single_deselect: true
-		});
-	});
-</script>
-
 
 	@include('unidadmedida.UnidMedi_fastInsert')
 	@include('empresa.Empresa_FastInsert')

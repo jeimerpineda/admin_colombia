@@ -126,6 +126,9 @@
     <script src="{{ asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/chosen.jquery.js') }}"></script>
     <script src="{{ asset('js/stacktable.js') }}"></script>
+
+    <script src="{{ asset('js/jquery.numeric.min.js') }}"></script>
+
     @yield('scripts')
     @yield('js')
 </body>

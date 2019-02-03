@@ -13,27 +13,10 @@ class FacturacionController extends Controller
     	$productos = \App\Productos::orderBy('id','asc')->get();
     	return view('facturacion.index',['clientes'=>$clientes, 'formasdepago'=>$formasdepago, 'productos'=>$productos],compact('clientes','formasdepago','productos'));
     }
-
-
-    public function getProducto($producto_id){
-    	return response()->json(\App\Productos::findOrFail($producto_ide));
+    public function getProducto(Request $request){
+    	$producto = \App\Productos::findOrFail($request->input('producto_id'));
+    	$unimed = \App\UnidadMedida::findOrFail($producto->unimed_id);
+    	$impuesto = \App\Impuestos::findOrFail($producto->impuestos_id);
+    	return response()->json([$producto,$unimed,$impuesto]);
     }
-
-
-	// CODIGO DE EJEMPLO DE PUBLIO
-
-    // public function insertFast(Request $request) {
-    //     $data = $request->validate([
-    //         'name'=>'required',
-    //         'email'=>'required|email'
-    //     ]);
-    //     $customer = new Customer();
-    //     $user = \Auth::user();
-    //     $customer->user_id = $user->id;
-    //     $customer->name = $request->input('name');
-    //     $customer->email = $request->input('email');
-    //     $customer->save();
-    //     return response()->json(\App\Customer::all());
-    // }
-
 }
