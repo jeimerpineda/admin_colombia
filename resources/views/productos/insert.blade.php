@@ -49,42 +49,21 @@
 							</div>
 						</div>
 						<div class="form-group col-12 col-md-4">
-							<label for="costo_dolar" class="col-12 col-form-label">Costo Dólar:</label>
-							<div class="col-12">
-								<input required type="text" name="costo_dolar" class="form-control" value="{{old('costo_dolar')}}">
-							</div>
-						</div>
-					</div>
-
-					<div class="form-row">
-						<div class="form-group col-12 col-md-4">
 							<label for="precio_venta1" class="col-12 col-form-label">Precio de Venta 1:</label>
 							<div class="col-12">
 								<input required type="text" name="precio_venta1" class="form-control" value="{{old('precio_venta1')}}">
 							</div>
 						</div>
+						
+					</div>
+
+					<div class="form-row">
 						<div class="form-group col-12 col-md-4">
 							<label for="precio_venta2" class="col-12 col-form-label">Precio de Venta 2:</label>
 							<div class="col-12">
 								<input required type="text" name="precio_venta2" class="form-control" value="{{old('precio_venta2')}}">
 							</div>
 						</div>
-						<div class="form-group col-12 col-md-4">
-							<label for="precio_venta_dolar1" class="col-12 col-form-label">Precio de Venta Dólar 1:</label>
-							<div class="col-12">
-								<input required type="text" name="precio_venta_dolar1" class="form-control" value="{{old('precio_venta_dolar1')}}">
-							</div>
-						</div>
-					</div>
-
-					<div class="form-row">
-						<div class="form-group col-12 col-md-4">
-							<label for="precio_venta_dolar2" class="col-12 col-form-label">Precio de Venta Dólar 2:</label>
-							<div class="col-12">
-								<input required type="text" name="precio_venta_dolar2" class="form-control" value="{{old('precio_venta_dolar2')}}">
-							</div>
-						</div>
-
 						<div class="form-group col-12 col-md-4">
 							<label for="unimed_id" class="col-12 col-form-label">Unidad de Medida:</label>
 							<div class="input-group">
@@ -111,7 +90,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="form-row">
 						<div class="form-group col-12 col-md-4">
 							<label for="empre_id" class="col-12 col-form-label">Empresa:</label>
@@ -124,9 +102,9 @@
 		   								</option>
 									@endforeach
 								</select>
-								<div class="input-group-append">
+								<!-- <div class="input-group-append">
 									<button data-toggle="modal" data-target="#modal_empresa" type="button" class="btn btn-outline-dark btn-sm"><i class="fa fa-plus-circle fa-lg"></i></button>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="form-group col-12 col-md-4">

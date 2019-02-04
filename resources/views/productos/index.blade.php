@@ -24,11 +24,8 @@
 							<th>Existencia</th>
 							<th>Existencia Minima</th>
 							<th>Costo</th>
-							<th>Costo Dolar</th>
 							<th>Precio de Venta 1</th>
 							<th>Precio de Venta 2</th>
-							<th>Precio Dolar 1</th>
-							<th>Precio Dolar 2</th>
 							<th>Unidad de Medida</th>
 							<th>Servicio</th>
 							<th>Empresa</th>
@@ -49,11 +46,8 @@
 								<td>{{$productos->existen}}</td>
 								<td>{{$productos->existencia_minima}}</td>
 								<td>{{$productos->costo}}</td>
-								<td>{{$productos->costo_dolar}}</td>
 								<td>{{$productos->precio_venta1}}</td>
 								<td>{{$productos->precio_venta2}}</td>
-								<td>{{$productos->precio_venta_dolar1}}</td>
-								<td>{{$productos->precio_venta_dolar2}}</td>
 								<td>{{$productos->unimed->descripcion}}</td>
 								<td>{{($productos->servicio==1) ? 'Servicio' : 'No es servicio'}}</td>
 								<td>{{$productos->empresa->razon_social}}</td>
