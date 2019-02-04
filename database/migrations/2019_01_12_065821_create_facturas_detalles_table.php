@@ -22,6 +22,9 @@ class CreateFacturasDetallesTable extends Migration
             $table->double('precio', 8, 2)->comment('Precio del produto');
             $table->string('impuesto', 2)->comment('Impuesto del produto');
             $table->double('descuento', 8, 2)->comment('Descuento del produto');
+            $table->double('total_sin_impuestos', 8, 2)->comment('Resultado de la operación');
+            $table->double('total_impuestos', 8, 2)->comment('Resultado de la operación');
+            $table->double('total_pagar', 8, 2)->comment('Resultado de la operación');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('facturas_id')->references('id')->on('list_empresa');

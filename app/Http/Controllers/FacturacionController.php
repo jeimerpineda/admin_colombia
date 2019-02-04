@@ -8,10 +8,14 @@ use Illuminate\Validation\Rule;
 class FacturacionController extends Controller
 {
     public function index() {
-    	$clientes = \App\Clientes::orderBy('id','asc')->get();
-    	$formasdepago = \App\FormasPago::orderBy('id','asc')->get();
-    	$productos = \App\Productos::orderBy('id','asc')->get();
-    	return view('facturacion.index',['clientes'=>$clientes, 'formasdepago'=>$formasdepago, 'productos'=>$productos],compact('clientes','formasdepago','productos'));
+    	$clientes = \App\Clientes::all()->sortBy('id');
+    	// $formasdepago = \App\FormasPago::orderBy('id','asc')->get();
+    	$productos = \App\Productos::all()->sortBy('id');
+    	return view('facturacion.index',[
+            'clientes'=>$clientes, 
+            // 'formasdepago'=>$formasdepago, 
+            'productos'=>$productos
+        ]);
     }
     public function getProducto(Request $request){
     	$producto = \App\Productos::findOrFail($request->input('producto_id'));

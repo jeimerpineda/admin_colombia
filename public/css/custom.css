@@ -1,0 +1,18 @@
+.bg-item-select {
+	background-color: #ECF4FF
+}
+.card-detail {
+	animation-duration: 200ms;
+  	animation-delay: 0s;
+}
+.card-detail:hover {
+	background-color: #EBEBEB;
+	cursor: pointer;
+	box-shadow: 0px 0px 10px #DFDED9;
+}
+.factura-details-list {
+	min-height:2vh; 
+	max-height:40vh; 
+	overflow-y: auto;
+	overflow-x: hidden;
+}

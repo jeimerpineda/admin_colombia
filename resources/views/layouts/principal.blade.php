@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
     {{-- css stacktable --}}
     <link rel="stylesheet" href="{{ asset('css/stacktable.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -128,7 +130,7 @@
     <script src="{{ asset('js/stacktable.js') }}"></script>
 
     <script src="{{ asset('js/jquery.numeric.min.js') }}"></script>
-
+    <script src="{{asset('js/animate.js')}}"></script>
     @yield('scripts')
     @yield('js')
 </body>
