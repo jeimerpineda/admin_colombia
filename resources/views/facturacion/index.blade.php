@@ -31,7 +31,7 @@
 									</select>
 								</div>
 								<div class="col-2">
-									<button data-toggle="modal" data-target="#unid_med" type="button" class="btn btn-outline-dark btn-sm ml-2 "><i class="fa fa-plus-circle fa-lg"></i></button>
+									<button data-toggle="modal" data-target="#clientes" type="button" class="btn btn-outline-dark btn-sm ml-2 "><i class="fa fa-plus-circle fa-lg"></i></button>
 								</div>
 							</div>
 						</form>
@@ -165,6 +165,9 @@
 			{{-- End Second column --}}
 		</div>
 	</div>
+
+	@include('clientes.Clientes_FastInsert')
+	
 @endsection
 
 @section('scripts')

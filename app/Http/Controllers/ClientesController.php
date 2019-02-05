@@ -44,6 +44,32 @@ class ClientesController extends Controller
     	]);
     }
 
+    public function insertFormFast(Request $request) {
+        $data = $request->validate([
+            'dni'=>'required|unique:list_clientes,dni',
+            'nombres'=>'required',
+            'apellidos'=>'required',
+            'direccion'=>'required',
+            'correo'=>'required',
+            'tlf1'=>'required',
+            'tlf2'=>'required',
+            'movil'=>'required',
+        ]);
+        $clientes = new \App\Clientes;
+        $user = \Auth::user();
+        $clientes->user_id = $user->id;
+        $clientes->dni = $request->input('dni');
+        $clientes->nombres = $request->input('nombres');
+        $clientes->apellidos = $request->input('apellidos');
+        $clientes->direccion = $request->input('direccion');
+        $clientes->correo = $request->input('correo');
+        $clientes->telefono = $request->input('tlf1');
+        $clientes->telefono_oficina = $request->input('tlf2');
+        $clientes->movil = $request->input('movil');
+        $clientes->save();
+        return response()->json(\App\Clientes::all());
+    }
+
     public function updatePage($cliente_ide) {
     	$clientes = \App\Clientes::findOrFail($cliente_ide);
     	return view('clientes.update',['listclientes'=>$clientes]);
