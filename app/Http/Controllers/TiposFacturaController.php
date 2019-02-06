@@ -27,7 +27,7 @@ class TiposFacturaController extends Controller
     	$tipfacturas->descripcion = $request->input('descripcion');
     	$tipfacturas->status = $request->input('status');
     	$tipfacturas->save();
-    	return redirect()->route('config.tiposdefacturas')->with([
+    	return redirect()->route('config.tiposdefactura')->with([
     		'message'=>$tipfacturas->descripcion.' ha sido agregado correctamente'
     	]);
     }
@@ -49,7 +49,7 @@ class TiposFacturaController extends Controller
     	$tipfacturas->descripcion = $request->input('descripcion');
     	$tipfacturas->status = $request->input('status');
     	$tipfacturas->save();
-    	return redirect()->route('config.tiposdefacturas.update',['tipfacturas_ide'=>$request->input('tipfacturas_ide')])->with([
+    	return redirect()->route('config.tiposdefactura.update',['tipfacturas_ide'=>$request->input('tipfacturas_ide')])->with([
     		'message'=>$tipfacturas->descripcion.' ha sido actualizado correctamente'
     	]);
     }
@@ -62,7 +62,7 @@ class TiposFacturaController extends Controller
     public function deleteForm(Request $request) {
     	$tipfacturas = \App\TiposFactura::findOrFail($request->input('tipfacturas_ide'));
     	$tipfacturas->delete();
-    	return redirect()->route('config.tiposdefacturas')->with([
+    	return redirect()->route('config.tiposdefactura')->with([
     		'message'=>$request->input('descripcion').' ha sido eliminado correctamente'
     	]);
     }

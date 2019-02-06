@@ -13,7 +13,7 @@
 				{!!\Basics::printMessage('message')!!}
 				{!!\Basics::printErrors($errors->any(),$errors->all())!!}
 
-				<form action="{{route('config.productos.update.form')}}" id="form_productos" method="POST" class="col-12">
+				<form action="{{route('config.producto.update.form')}}" id="form_productos" method="POST" class="col-12">
 					@csrf
 					<div class="form-row">
 						<div class="form-group col-12 col-md-4">
@@ -125,7 +125,7 @@
 					
 					<div class="btn-group d-flex justify-content-center mt-5">
 
-						<a href="{{route('config.productos')}}" class="btn btn-link mr-2">
+						<a href="{{route('config.producto')}}" class="btn btn-link mr-2">
 							<i class="fa fa-arrow-left"></i> Volver
 						</a>
 						<button class="btn btn-primary">
@@ -143,6 +143,6 @@
 
 	@include('unidadmedida.UnidMedi_fastInsert')
 	@include('empresa.Empresa_FastInsert')
-	@include('impuestos.Impuestos_FastInsert')
+	@include('impuesto.Impuestos_FastInsert')
 
 @endsection

@@ -11,7 +11,7 @@
 				<div class="alert alert-info">
 					Esta acción borrará el registro de la base de datos. ¿Está segur@ que desea continuar?
 				</div>
-				<form action="{{route('config.clientes.delete.form')}}" id="form_clientes" method="POST" class="col-12">
+				<form action="{{route('config.cliente.delete.form')}}" id="form_clientes" method="POST" class="col-12">
 					@csrf
 				<div class="form-row">
 
@@ -67,7 +67,7 @@
 					</div>
 				</div>
 					<div class="btn-group d-flex justify-content-center">
-						<a href="{{route('config.clientes')}}" class="btn btn-link mr-2">
+						<a href="{{route('config.cliente')}}" class="btn btn-link mr-2">
 							<i class="fa fa-arrow-left"></i> Volver
 						</a>
 						<button class="btn btn-danger">

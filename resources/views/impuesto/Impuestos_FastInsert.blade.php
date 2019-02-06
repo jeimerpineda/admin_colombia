@@ -1,7 +1,7 @@
 {!!\Basics::modalHeader(null,'modal_impuesto','Agregar Impuesto - Modo Rápido')!!}
 <div class="modal-body">
 	<div id="errors-modal-impuestos"></div>
-	<form action="{{route('config.impuestos.insert.form.fast')}}" id="form_impuestos_fast" method="POST" class="col-10 offset-1">
+	<form action="{{route('config.impuesto.insert.form.fast')}}" id="form_impuestos_fast" method="POST" class="col-10 offset-1">
 		@csrf
 		<div class="form-group row">
 			<label for="descripcion" class="col-12 col-md-3 col-form-label">Impuesto:</label>

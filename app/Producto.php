@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Productos extends Model
+class Producto extends Model
 {
     protected $table = 'productos';
 
    public function impuestos() {
-   		return $this->belongsTo('App\Impuestos','impuestos_id');
+   		return $this->belongsTo('App\Impuesto','impuestos_id');
    }
 
    public function unimed() {

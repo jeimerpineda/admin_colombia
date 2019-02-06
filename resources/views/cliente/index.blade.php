@@ -4,7 +4,7 @@
 	{!!\Basics::Breadcrumb(['Configuración','Clientes','Lista',])!!}
 	<div class="container-fluid">
 		<div class="btn-group d-flex justify-content-end mb-3">
-			<a href="{{route('config.clientes.insert')}}" class="btn btn-dark btn-sm">
+			<a href="{{route('config.cliente.insert')}}" class="btn btn-dark btn-sm">
 				<i class="fa fa-plus"></i> Agregar Cliente
 			</a>
 		</div>
@@ -49,10 +49,10 @@
 								<td>{{$clientes->updated_at}}</td>
 								<td>
 									<div class="btn-group">
-										<a href="{{route('config.clientes.update',['cliente_id'=>$clientes->id])}}" class="btn btn-outline-primary btn-sm">
+										<a href="{{route('config.cliente.update',['cliente_id'=>$clientes->id])}}" class="btn btn-outline-primary btn-sm">
 											<i class="fa fa-edit"></i>
 										</a>
-										<a href="{{route('config.clientes.delete',['cliente_id'=>$clientes->id])}}" class="btn btn-outline-danger btn-sm">
+										<a href="{{route('config.cliente.delete',['cliente_id'=>$clientes->id])}}" class="btn btn-outline-danger btn-sm">
 											<i class="fa fa-trash"></i>
 										</a>
 									</div>
