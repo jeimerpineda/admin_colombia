@@ -58,7 +58,7 @@ Route::post('/config/impuesto/insert/form/fast')->uses('ImpuestoController@inser
 // Route::post('/config/impuestos/insert/form/fast')->uses('ImpuestosController@insertFormFast')->name('config.impuestos.insert.form.fast')->middleware('auth');
 
 // Facturación
-Route::get('/ventaspos/facturacion/')->uses('facturacionController@index')->name('ventaspos.facturacion')->middleware('auth');
+Route::get('/ventaspos/facturacion/')->uses('FacturacionController@index')->name('ventaspos.facturacion')->middleware('auth');
 // Route::post('ventaspos/facturacion/producto')->uses('FacturacionController@getProducto')->name('ventaspos.facturacion.getproducto')->middleware('auth');
 // Route::get('/ventaspos/facturacion/insert')->uses('facturacionController@insertPage')->name('ventaspos.facturacion.insert')->middleware('auth');
 // Route::post('/ventaspos/facturacion/insert/form')->uses('facturacionController@insertForm')->name('ventaspos.facturacion.insert.form')->middleware('auth');
@@ -109,6 +109,7 @@ Route::post('/config/empresa/insert/form/fast')->uses('EmpresaController@insertF
 // >>>>>>> pr/7
 
 //Clientes
+
 Route::get('/config/cliente/')->uses('ClienteController@index')->name('config.cliente')->middleware('auth');
 Route::get('/config/cliente/insert')->uses('ClienteController@insertPage')->name('config.cliente.insert')->middleware('auth');
 Route::post('/config/cliente/insert/form')->uses('ClienteController@insertForm')->name('config.cliente.insert.form')->middleware('auth');
@@ -116,6 +117,7 @@ Route::get('/config/cliente/update/{cliente_ide}')->uses('ClienteController@upda
 Route::post('/config/cliente/update/form')->uses('ClienteController@updateForm')->name('config.cliente.update.form')->middleware('auth');
 Route::get('/config/cliente/delete/{cliente_ide}')->uses('ClienteController@deletePage')->name('config.cliente.delete')->middleware('auth');
 Route::post('/config/cliente/delete/form')->uses('ClienteController@deleteForm')->name('config.cliente.delete.form')->middleware('auth');
+
 
 //Productos
 Route::get('/config/producto/')->uses('ProductoController@index')->name('config.producto')->middleware('auth');
