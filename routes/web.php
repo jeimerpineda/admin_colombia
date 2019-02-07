@@ -128,3 +128,34 @@ Route::get('/config/producto/update/{producto_ide}')->uses('ProductoController@u
 Route::post('/config/producto/update/form')->uses('ProductoController@updateForm')->name('config.producto.update.form')->middleware('auth');
 Route::get('/config/producto/delete/{producto_ide}')->uses('ProductoController@deletePage')->name('config.producto.delete')->middleware('auth');
 Route::post('/config/producto/delete/form')->uses('ProductoController@deleteForm')->name('config.producto.delete.form')->middleware('auth');
+
+// Regimen Iva
+Route::get('/config/regimeniva/')->uses('RegimenIvaController@index')->name('config.regimeniva')->middleware('auth');
+Route::get('/config/regimeniva/insert')->uses('RegimenIvaController@insertPage')->name('config.regimeniva.insert')->middleware('auth');
+Route::post('/config/regimeniva/insert/form')->uses('RegimenIvaController@insertForm')->name('config.regimeniva.insert.form')->middleware('auth');
+Route::get('/config/regimeniva/update/{regimen_id}')->uses('RegimenIvaController@updatePage')->name('config.regimeniva.update')->middleware('auth');
+Route::post('/config/regimeniva/update/form')->uses('RegimenIvaController@updateForm')->name('config.regimeniva.update.form')->middleware('auth');
+Route::get('/config/regimeniva/delete/{regimen_id}')->uses('RegimenIvaController@deletePage')->name('config.regimeniva.delete')->middleware('auth');
+Route::post('/config/regimeniva/delete/form')->uses('RegimenIvaController@deleteForm')->name('config.regimeniva.delete.form')->middleware('auth');
+Route::post('/config/regimeniva/insert/form/fast')->uses('RegimenIvaController@insertFormFast')->name('config.regimeniva.insert.form.fast')->middleware('auth');
+
+// Tipo de Documento
+Route::get('/config/tipodocumento/')->uses('TipoDocumentoController@index')->name('config.tipodocumento')->middleware('auth');
+Route::get('/config/tipodocumento/insert')->uses('TipoDocumentoController@insertPage')->name('config.tipodocumento.insert')->middleware('auth');
+Route::post('/config/tipodocumento/insert/form')->uses('TipoDocumentoController@insertForm')->name('config.tipodocumento.insert.form')->middleware('auth');
+Route::get('/config/tipodocumento/update/{tipodocumento_id}')->uses('TipoDocumentoController@updatePage')->name('config.tipodocumento.update')->middleware('auth');
+Route::post('/config/tipodocumento/update/form')->uses('TipoDocumentoController@updateForm')->name('config.tipodocumento.update.form')->middleware('auth');
+Route::get('/config/tipodocumento/delete/{tipodocumento_id}')->uses('TipoDocumentoController@deletePage')->name('config.tipodocumento.delete')->middleware('auth');
+Route::post('/config/tipodocumento/delete/form')->uses('TipoDocumentoController@deleteForm')->name('config.tipodocumento.delete.form')->middleware('auth');
+Route::post('/config/tipodocumento/insert/form/fast')->uses('TipoDocumentoController@insertFormFast')->name('config.tipodocumento.insert.form.fast')->middleware('auth');
+
+// Proveedores
+Route::get('/config/proveedor/')->uses('ProveedorController@index')->name('config.proveedor')->middleware('auth');
+Route::get('/config/proveedor/insert')->uses('ProveedorController@insertPage')->name('config.proveedor.insert')->middleware('auth');
+Route::post('/config/proveedor/insert/form')->uses('ProveedorController@insertForm')->name('config.proveedor.insert.form')->middleware('auth');
+Route::get('/config/proveedor/update/{proveedor_id}')->uses('ProveedorController@updatePage')->name('config.proveedor.update')->middleware('auth');
+Route::post('/config/proveedor/update/form')->uses('ProveedorController@updateForm')->name('config.proveedor.update.form')->middleware('auth');
+Route::get('/config/proveedor/delete/{proveedor_id}')->uses('ProveedorController@deletePage')->name('config.proveedor.delete')->middleware('auth');
+Route::post('/config/proveedor/delete/form')->uses('ProveedorController@deleteForm')->name('config.proveedor.delete.form')->middleware('auth');
+Route::post('/config/proveedor/insert/form/fast')->uses('ProveedorController@insertFormFast')->name('config.proveedor.insert.form.fast')->middleware('auth');
+

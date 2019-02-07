@@ -73,6 +73,12 @@
                                 <a class="dropdown-item" href="{{route('config.unidadmedida')}}">
                                     Unidades de Medida
                                 </a>
+                                 <a class="dropdown-item" href="{{route('config.tipodocumento')}}">
+                                    Tipo de Documento
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.regimeniva')}}">
+                                    Regimen de Iva
+                                </a>
                                 <a class="dropdown-item" href="{{route('config.impuesto')}}">
                                     Impuestos
                                 </a>
@@ -88,7 +94,11 @@
                                 <a class="dropdown-item" href="{{route('config.cliente')}}">
                                     Clientes
                                 </a>
+                                <a class="dropdown-item" href="{{route('config.proveedor')}}">
+                                    Proveedores
+                                </a>
                                 <a class="dropdown-item" href="{{route('config.producto')}}">
+
                                     Productos
                                 </a>
                             </div>
