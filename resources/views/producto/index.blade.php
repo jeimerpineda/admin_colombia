@@ -4,7 +4,7 @@
 	{!!\Basics::Breadcrumb(['Configuración','Productos','Lista',])!!}
 	<div class="container-fluid">
 		<div class="btn-group d-flex justify-content-end mb-3">
-			<a href="{{route('config.productos.insert')}}" class="btn btn-dark btn-sm">
+			<a href="{{route('config.producto.insert')}}" class="btn btn-dark btn-sm">
 				<i class="fa fa-plus"></i> Agregar Producto
 			</a>
 		</div>
@@ -24,11 +24,8 @@
 							<th>Existencia</th>
 							<th>Existencia Minima</th>
 							<th>Costo</th>
-							<th>Costo Dolar</th>
 							<th>Precio de Venta 1</th>
 							<th>Precio de Venta 2</th>
-							<th>Precio Dolar 1</th>
-							<th>Precio Dolar 2</th>
 							<th>Unidad de Medida</th>
 							<th>Servicio</th>
 							<th>Empresa</th>
@@ -49,11 +46,8 @@
 								<td>{{$productos->existen}}</td>
 								<td>{{$productos->existencia_minima}}</td>
 								<td>{{$productos->costo}}</td>
-								<td>{{$productos->costo_dolar}}</td>
 								<td>{{$productos->precio_venta1}}</td>
 								<td>{{$productos->precio_venta2}}</td>
-								<td>{{$productos->precio_venta_dolar1}}</td>
-								<td>{{$productos->precio_venta_dolar2}}</td>
 								<td>{{$productos->unimed->descripcion}}</td>
 								<td>{{($productos->servicio==1) ? 'Servicio' : 'No es servicio'}}</td>
 								<td>{{$productos->empresa->razon_social}}</td>
@@ -63,10 +57,10 @@
 								<td>{{$productos->updated_at}}</td>
 								<td>
 									<div class="btn-group">
-										<a href="{{route('config.productos.update',['producto_id'=>$productos->id])}}" class="btn btn-outline-primary btn-sm">
+										<a href="{{route('config.producto.update',['producto_id'=>$productos->id])}}" class="btn btn-outline-primary btn-sm">
 											<i class="fa fa-edit"></i>
 										</a>
-										<a href="{{route('config.productos.delete',['producto_id'=>$productos->id])}}" class="btn btn-outline-danger btn-sm">
+										<a href="{{route('config.producto.delete',['producto_id'=>$productos->id])}}" class="btn btn-outline-danger btn-sm">
 											<i class="fa fa-trash"></i>
 										</a>
 									</div>

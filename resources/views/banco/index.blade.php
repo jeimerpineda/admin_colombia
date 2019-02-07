@@ -1,15 +1,15 @@
 @extends('layouts.principal')
-@section('title') Impuestos @endsection
+@section('title') Bancos @endsection
 @section('content')
-	{!!\Basics::Breadcrumb(['Configuración','Impuestos','Lista',])!!}
+	{!!\Basics::Breadcrumb(['Configuración','Bancos','Lista',])!!}
 	<div class="container-fluid">
 		<div class="btn-group d-flex justify-content-end mb-3">
-			<a href="{{route('config.impuestos.insert')}}" class="btn btn-dark btn-sm">
-				<i class="fa fa-plus"></i> Agregar Impuesto
+			<a href="{{route('config.banco.insert')}}" class="btn btn-dark btn-sm">
+				<i class="fa fa-plus"></i> Agregar Banco
 			</a>
 		</div>
 		{!!\Basics::printMessage('message')!!}
-		@if($impuestos->isEmpty())
+		@if($bancos->isEmpty())
 			<div class="alert alert-info">
 				No se encontraron registros
 			</div>
@@ -19,7 +19,7 @@
 					<thead>
 						<tr>
 							<th>Id</th>
-							<th>Impuesto</th>
+							<th>Descripción</th>
 							<th>Status</th>
 							<th>Creado</th>
 							<th>Modificado</th>
@@ -27,19 +27,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($impuestos as $impuesto)
+						@foreach($bancos as $banco)
 							<tr>
-								<td>{{$impuesto->id}}</td>
-								<td>{{$impuesto->descripcion}}</td>
-								<td>{{($impuesto->status==1) ? 'Activo' : 'Inactivo'}}</td>
-								<td>{{$impuesto->created_at}}</td>
-								<td>{{$impuesto->updated_at}}</td>
+								<td>{{$banco->id}}</td>
+								<td>{{$banco->descripcion}}</td>
+								<td>{{($banco->status==1) ? 'Activo' : 'Inactivo'}}</td>
+								<td>{{$banco->created_at}}</td>
+								<td>{{$banco->updated_at}}</td>
 								<td>
 									<div class="btn-group">
-										<a href="{{route('config.impuestos.update',['impuestos_id'=>$impuesto->id])}}" class="btn btn-outline-primary btn-sm">
+										<a href="{{route('config.banco.update',['banco_id'=>$banco->id])}}" class="btn btn-outline-primary btn-sm">
 											<i class="fa fa-edit"></i>
 										</a>
-										<a href="{{route('config.impuestos.delete',['impuestos_id'=>$impuesto->id])}}" class="btn btn-outline-danger btn-sm">
+										<a href="{{route('config.banco.delete',['banco_id'=>$banco->id])}}" class="btn btn-outline-danger btn-sm">
 											<i class="fa fa-trash"></i>
 										</a>
 									</div>
@@ -50,7 +50,7 @@
 				</table>
 			</div>
 			<div class="d-flex justify-content-center">
-				{{$impuestos->links()}}
+				{{$bancos->links()}}
 			</div>
 		@endempty
 	</div>

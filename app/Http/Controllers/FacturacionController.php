@@ -8,9 +8,9 @@ use Illuminate\Validation\Rule;
 class FacturacionController extends Controller
 {
     public function index() {
-    	$clientes = \App\Clientes::all()->sortBy('id');
+    	$clientes = \App\Cliente::all()->sortBy('id');
     	// $formasdepago = \App\FormasPago::orderBy('id','asc')->get();
-    	$productos = \App\Productos::all()->sortBy('id');
+    	$productos = \App\Producto::all()->sortBy('id');
     	return view('facturacion.index',[
             'clientes'=>$clientes, 
             // 'formasdepago'=>$formasdepago, 
@@ -18,9 +18,9 @@ class FacturacionController extends Controller
         ]);
     }
     public function getProducto(Request $request){
-    	$producto = \App\Productos::findOrFail($request->input('producto_id'));
+    	$producto = \App\Producto::findOrFail($request->input('producto_id'));
     	$unimed = \App\UnidadMedida::findOrFail($producto->unimed_id);
-    	$impuesto = \App\Impuestos::findOrFail($producto->impuestos_id);
+    	$impuesto = \App\Impuesto::findOrFail($producto->impuestos_id);
     	return response()->json([$producto,$unimed,$impuesto]);
     }
 }

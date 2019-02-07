@@ -21,11 +21,11 @@ class CreateListProductosTable extends Migration
             $table->double('existen', 8, 2)->comment('Cantida actual del produto');
             $table->double('existencia_minima', 8, 2)->comment('Cantida minima del produto');
             $table->double('costo', 8, 2)->comment('Costo en modena del produto');
-            $table->double('costo_dolar', 8, 2)->comment('Costo en dolares del produto');
+            $table->double('costo_dolar', 8, 2)->nullable()->comment('Costo en dolares del produto');
             $table->double('precio_venta1', 8, 2)->comment('1 precio de venta del produto');
             $table->double('precio_venta2', 8, 2)->comment('2 precio de venta del produto');
-            $table->double('precio_venta_dolar1', 8, 2)->comment('1 precio de venta en dolares del produto');
-            $table->double('precio_venta_dolar2', 8, 2)->comment('2 precio de venta en dolares del produto');
+            $table->double('precio_venta_dolar1', 8, 2)->nullable()->comment('1 precio de venta en dolares del produto');
+            $table->double('precio_venta_dolar2', 8, 2)->nullable()->comment('2 precio de venta en dolares del produto');
             $table->unsignedInteger('unimed_id')->comment('Codigo de unidad de medida de produtos');
             $table->string('servicio', 2)->comment('0 no es un servicio, 1 si e servicio el produto');
             $table->unsignedInteger('empre_id')->comment('Codigo de la empresa a que pertenece el producto');

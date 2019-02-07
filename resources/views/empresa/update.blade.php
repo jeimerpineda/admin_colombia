@@ -54,7 +54,8 @@
 					<div class="form-group col-12 col-md-4">
 						<label for="sucursal" class="col-12 col-form-label">Sucursal:</label>
 						<div class="col-12">
-							<input required type="text" name="sucursal" class="form-control" value="{{$listempresa->sucursal}}">
+							<label class="radio-inline"><input type="radio" name="sucursal" value="1">  Principal  </label>
+							<label class="radio-inline"><input type="radio" name="sucursal" value="0"> Sucursal </label>
 						</div>
 					</div>
 				</div>

@@ -11,7 +11,7 @@
 				<div class="alert alert-info">
 					Esta acción borrará el registro de la base de datos. ¿Está segur@ que desea continuar?
 				</div>
-				<form action="{{route('config.bancos.delete.form')}}" id="form_bancos" method="POST" class="col-md-8 col-xs-6 col-form-label offset-md-2 offset-xs-3">
+				<form action="{{route('config.banco.delete.form')}}" id="form_bancos" method="POST" class="col-md-8 col-xs-6 col-form-label offset-md-2 offset-xs-3">
 					@csrf
 					<div class="form-group row">
 						<label for="descripcion" class="col-md-4 col-xs-12 col-form-label">Nombre:</label>
@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<div class="btn-group d-flex justify-content-center">
-						<a href="{{route('config.bancos')}}" class="btn btn-link mr-2">
+						<a href="{{route('config.banco')}}" class="btn btn-link mr-2">
 							<i class="fa fa-arrow-left"></i> Volver
 						</a>
 						<button class="btn btn-danger" type="submit">

@@ -166,7 +166,7 @@
 		</div>
 	</div>
 
-	@include('clientes.Clientes_FastInsert')
+	@include('cliente.Clientes_fastInsert')
 	
 @endsection
 

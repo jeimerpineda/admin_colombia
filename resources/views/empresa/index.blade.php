@@ -41,7 +41,7 @@
 								<td>{{$empresa->correo}}</td>
 								<td>{{$empresa->telefono_principal}}</td>
 								<td>{{$empresa->telefono_segundario}}</td>
-								<td>{{$empresa->sucursal}}</td>
+								<td>{{($empresa->sucursal==1) ? 'Principal' : 'Sucursal'}}</td>
 								<td>{{$empresa->created_at}}</td>
 								<td>{{$empresa->updated_at}}</td>
 								<td>

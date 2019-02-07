@@ -24,13 +24,13 @@ Route::get('/news',function(){
 })->name('news');
 
 // Bancos
-Route::get('/config/bancos/')->uses('BancoController@index')->name('config.bancos')->middleware('auth');
-Route::get('/config/bancos/insert')->uses('BancoController@insertPage')->name('config.bancos.insert')->middleware('auth');
-Route::post('/config/bancos/insert/form')->uses('BancoController@insertForm')->name('config.bancos.insert.form')->middleware('auth');
-Route::get('/config/bancos/update/{banco_id}')->uses('BancoController@updatePage')->name('config.bancos.update')->middleware('auth');
-Route::post('/config/bancos/update/form')->uses('BancoController@updateForm')->name('config.bancos.update.form')->middleware('auth');
-Route::get('/config/bancos/delete/{banco_id}')->uses('BancoController@deletePage')->name('config.bancos.delete')->middleware('auth');
-Route::post('/config/bancos/delete/form')->uses('BancoController@deleteForm')->name('config.bancos.delete.form')->middleware('auth');
+Route::get('/config/banco/')->uses('BancoController@index')->name('config.banco')->middleware('auth');
+Route::get('/config/banco/insert')->uses('BancoController@insertPage')->name('config.banco.insert')->middleware('auth');
+Route::post('/config/banco/insert/form')->uses('BancoController@insertForm')->name('config.banco.insert.form')->middleware('auth');
+Route::get('/config/banco/update/{banco_id}')->uses('BancoController@updatePage')->name('config.banco.update')->middleware('auth');
+Route::post('/config/banco/update/form')->uses('BancoController@updateForm')->name('config.banco.update.form')->middleware('auth');
+Route::get('/config/banco/delete/{banco_id}')->uses('BancoController@deletePage')->name('config.banco.delete')->middleware('auth');
+Route::post('/config/banco/delete/form')->uses('BancoController@deleteForm')->name('config.banco.delete.form')->middleware('auth');
 
 // Unidades de Medida
 Route::get('/config/unidadmedida/')->uses('UnidadMedidaController@index')->name('config.unidadmedida')->middleware('auth');
@@ -43,14 +43,14 @@ Route::post('/config/unidadmedida/delete/form')->uses('UnidadMedidaController@de
 Route::post('/config/unidadmedida/insert/form/fast')->uses('UnidadMedidaController@insertFormFast')->name('config.unidadmedida.insert.form.fast')->middleware('auth');
 
 //Impuestos
-Route::get('/config/impuestos/')->uses('ImpuestosController@index')->name('config.impuestos')->middleware('auth');
-Route::get('/config/impuestos/insert')->uses('ImpuestosController@insertPage')->name('config.impuestos.insert')->middleware('auth');
-Route::post('/config/impuestos/insert/form')->uses('ImpuestosController@insertForm')->name('config.impuestos.insert.form')->middleware('auth');
-Route::get('/config/impuestos/update/{impuesto_id}')->uses('ImpuestosController@updatePage')->name('config.impuestos.update')->middleware('auth');
-Route::post('/config/impuestos/update/form')->uses('ImpuestosController@updateForm')->name('config.impuestos.update.form')->middleware('auth');
-Route::get('/config/impuestos/delete/{impuesto_id}')->uses('ImpuestosController@deletePage')->name('config.impuestos.delete')->middleware('auth');
-Route::post('/config/impuestos/delete/form')->uses('ImpuestosController@deleteForm')->name('config.impuestos.delete.form')->middleware('auth');
-Route::post('/config/impuestos/insert/form/fast')->uses('ImpuestosController@insertFormFast')->name('config.impuestos.insert.form.fast')->middleware('auth');
+Route::get('/config/impuesto/')->uses('ImpuestoController@index')->name('config.impuesto')->middleware('auth');
+Route::get('/config/impuesto/insert')->uses('ImpuestoController@insertPage')->name('config.impuesto.insert')->middleware('auth');
+Route::post('/config/impuesto/insert/form')->uses('ImpuestoController@insertForm')->name('config.impuesto.insert.form')->middleware('auth');
+Route::get('/config/impuesto/update/{impuesto_id}')->uses('ImpuestoController@updatePage')->name('config.impuesto.update')->middleware('auth');
+Route::post('/config/impuesto/update/form')->uses('ImpuestoController@updateForm')->name('config.impuesto.update.form')->middleware('auth');
+Route::get('/config/impuesto/delete/{impuesto_id}')->uses('ImpuestoController@deletePage')->name('config.impuesto.delete')->middleware('auth');
+Route::post('/config/impuesto/delete/form')->uses('ImpuestoController@deleteForm')->name('config.impuesto.delete.form')->middleware('auth');
+Route::post('/config/impuesto/insert/form/fast')->uses('ImpuestoController@insertFormFast')->name('config.impuesto.insert.form.fast')->middleware('auth');
 
 
 // Route::get('/ventaspos/facturacion/')->uses('facturacionController@index')->name('ventaspos.facturacion')->middleware('auth');
@@ -86,13 +86,13 @@ Route::get('/config/formasdepago/delete/{formaspago_id}')->uses('FormasPagoContr
 Route::post('/config/formasdepago/delete/form')->uses('FormasPagoController@deleteForm')->name('config.formasdepago.delete.form')->middleware('auth');
 
 // Tipos de Facturas
-Route::get('/config/tiposdefacturas/')->uses('TiposFacturaController@index')->name('config.tiposdefacturas')->middleware('auth');
-Route::get('/config/tiposdefacturas/insert')->uses('TiposFacturaController@insertPage')->name('config.tiposdefacturas.insert')->middleware('auth');
-Route::post('/config/tiposdefacturas/insert/form')->uses('TiposFacturaController@insertForm')->name('config.tiposdefacturas.insert.form')->middleware('auth');
-Route::get('/config/tiposdefacturas/update/{tipfacturas_ide}')->uses('TiposFacturaController@updatePage')->name('config.tiposdefacturas.update')->middleware('auth');
-Route::post('/config/tiposdefacturas/update/form')->uses('TiposFacturaController@updateForm')->name('config.tiposdefacturas.update.form')->middleware('auth');
-Route::get('/config/tiposdefacturas/delete/{tipfacturas_ide}')->uses('TiposFacturaController@deletePage')->name('config.tiposdefacturas.delete')->middleware('auth');
-Route::post('/config/tiposdefacturas/delete/form')->uses('TiposFacturaController@deleteForm')->name('config.tiposdefacturas.delete.form')->middleware('auth');
+Route::get('/config/tiposdefactura/')->uses('TiposFacturaController@index')->name('config.tiposdefactura')->middleware('auth');
+Route::get('/config/tiposdefactura/insert')->uses('TiposFacturaController@insertPage')->name('config.tiposdefactura.insert')->middleware('auth');
+Route::post('/config/tiposdefactura/insert/form')->uses('TiposFacturaController@insertForm')->name('config.tiposdefactura.insert.form')->middleware('auth');
+Route::get('/config/tiposdefactura/update/{tipfacturas_ide}')->uses('TiposFacturaController@updatePage')->name('config.tiposdefactura.update')->middleware('auth');
+Route::post('/config/tiposdefactura/update/form')->uses('TiposFacturaController@updateForm')->name('config.tiposdefactura.update.form')->middleware('auth');
+Route::get('/config/tiposdefactura/delete/{tipfacturas_ide}')->uses('TiposFacturaController@deletePage')->name('config.tiposdefactura.delete')->middleware('auth');
+Route::post('/config/tiposdefactura/delete/form')->uses('TiposFacturaController@deleteForm')->name('config.tiposdefactura.delete.form')->middleware('auth');
 
 //Empresa
 Route::get('/config/empresa/')->uses('EmpresaController@index')->name('config.empresa')->middleware('auth');
@@ -109,20 +109,22 @@ Route::post('/config/empresa/insert/form/fast')->uses('EmpresaController@insertF
 // >>>>>>> pr/7
 
 //Clientes
-Route::get('/config/clientes/')->uses('ClientesController@index')->name('config.clientes')->middleware('auth');
-Route::get('/config/clientes/insert')->uses('ClientesController@insertPage')->name('config.clientes.insert')->middleware('auth');
-Route::post('/config/clientes/insert/form')->uses('ClientesController@insertForm')->name('config.clientes.insert.form')->middleware('auth');
-Route::get('/config/clientes/update/{cliente_ide}')->uses('ClientesController@updatePage')->name('config.clientes.update')->middleware('auth');
-Route::post('/config/clientes/update/form')->uses('ClientesController@updateForm')->name('config.clientes.update.form')->middleware('auth');
-Route::get('/config/clientes/delete/{cliente_ide}')->uses('ClientesController@deletePage')->name('config.clientes.delete')->middleware('auth');
-Route::post('/config/clientes/delete/form')->uses('ClientesController@deleteForm')->name('config.clientes.delete.form')->middleware('auth');
-Route::post('/config/clientes/insert/form/fast')->uses('ClientesController@insertFormFast')->name('config.clientes.insert.form.fast')->middleware('auth');
+
+Route::get('/config/cliente/')->uses('ClienteController@index')->name('config.cliente')->middleware('auth');
+Route::get('/config/cliente/insert')->uses('ClienteController@insertPage')->name('config.cliente.insert')->middleware('auth');
+Route::post('/config/cliente/insert/form')->uses('ClienteController@insertForm')->name('config.cliente.insert.form')->middleware('auth');
+Route::get('/config/cliente/update/{cliente_ide}')->uses('ClienteController@updatePage')->name('config.cliente.update')->middleware('auth');
+Route::post('/config/cliente/update/form')->uses('ClienteController@updateForm')->name('config.cliente.update.form')->middleware('auth');
+Route::get('/config/cliente/delete/{cliente_ide}')->uses('ClienteController@deletePage')->name('config.cliente.delete')->middleware('auth');
+Route::post('/config/cliente/delete/form')->uses('ClienteController@deleteForm')->name('config.cliente.delete.form')->middleware('auth');
+Route::post('/config/cliente/insert/form/fast')->uses('ClienteController@insertFormFast')->name('config.cliente.insert.form.fast')->middleware('auth');
+
 
 //Productos
-Route::get('/config/productos/')->uses('ProductosController@index')->name('config.productos')->middleware('auth');
-Route::get('/config/productos/insert')->uses('ProductosController@insertPage')->name('config.productos.insert')->middleware('auth');
-Route::post('/config/productos/insert/form')->uses('ProductosController@insertForm')->name('config.productos.insert.form')->middleware('auth');
-Route::get('/config/productos/update/{producto_ide}')->uses('ProductosController@updatePage')->name('config.productos.update')->middleware('auth');
-Route::post('/config/productos/update/form')->uses('ProductosController@updateForm')->name('config.productos.update.form')->middleware('auth');
-Route::get('/config/productos/delete/{producto_ide}')->uses('ProductosController@deletePage')->name('config.productos.delete')->middleware('auth');
-Route::post('/config/productos/delete/form')->uses('ProductosController@deleteForm')->name('config.productos.delete.form')->middleware('auth');
+Route::get('/config/producto/')->uses('ProductoController@index')->name('config.producto')->middleware('auth');
+Route::get('/config/producto/insert')->uses('ProductoController@insertPage')->name('config.producto.insert')->middleware('auth');
+Route::post('/config/producto/insert/form')->uses('ProductoController@insertForm')->name('config.producto.insert.form')->middleware('auth');
+Route::get('/config/producto/update/{producto_ide}')->uses('ProductoController@updatePage')->name('config.producto.update')->middleware('auth');
+Route::post('/config/producto/update/form')->uses('ProductoController@updateForm')->name('config.producto.update.form')->middleware('auth');
+Route::get('/config/producto/delete/{producto_ide}')->uses('ProductoController@deletePage')->name('config.producto.delete')->middleware('auth');
+Route::post('/config/producto/delete/form')->uses('ProductoController@deleteForm')->name('config.producto.delete.form')->middleware('auth');
