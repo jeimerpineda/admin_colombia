@@ -67,28 +67,38 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('config.bancos')}}">
+                                <a class="dropdown-item" href="{{route('config.banco')}}">
                                     Bancos
                                 </a>
                                 <a class="dropdown-item" href="{{route('config.unidadmedida')}}">
                                     Unidades de Medida
                                 </a>
-                                <a class="dropdown-item" href="{{route('config.impuestos')}}">
+                                 <a class="dropdown-item" href="{{route('config.tipodocumento')}}">
+                                    Tipo de Documento
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.regimeniva')}}">
+                                    Regimen de Iva
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.impuesto')}}">
                                     Impuestos
                                 </a>
                                 <a class="dropdown-item" href="{{route('config.formasdepago')}}">
                                     Formas de Pago
                                 </a>
-                                <a class="dropdown-item" href="{{route('config.tiposdefacturas')}}">
+                                <a class="dropdown-item" href="{{route('config.tiposdefactura')}}">
                                     Tipos de Factura
                                 </a>
                                 <a class="dropdown-item" href="{{route('config.empresa')}}">
                                     Empresa
                                 </a>
-                                <a class="dropdown-item" href="{{route('config.clientes')}}">
+                                <a class="dropdown-item" href="{{route('config.cliente')}}">
                                     Clientes
                                 </a>
-                                <a class="dropdown-item" href="{{route('config.productos')}}">
+                                <a class="dropdown-item" href="{{route('config.proveedor')}}">
+                                    Proveedores
+                                </a>
+                                <a class="dropdown-item" href="{{route('config.producto')}}">
+
                                     Productos
                                 </a>
                             </div>

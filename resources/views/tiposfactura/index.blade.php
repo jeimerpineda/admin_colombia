@@ -4,7 +4,7 @@
 	{!!\Basics::Breadcrumb(['Configuración','Tipos de Factura','Lista',])!!}
 	<div class="container-fluid">
 		<div class="btn-group d-flex justify-content-end mb-3">
-			<a href="{{route('config.tiposdefacturas.insert')}}" class="btn btn-dark btn-sm">
+			<a href="{{route('config.tiposdefactura.insert')}}" class="btn btn-dark btn-sm">
 				<i class="fa fa-plus"></i> Agregar Tipo de Factura
 			</a>
 		</div>
@@ -36,10 +36,10 @@
 								<td>{{$tiposfactura->updated_at}}</td>
 								<td>
 									<div class="btn-group">
-										<a href="{{route('config.tiposdefacturas.update',['tipfacturas_id'=>$tiposfactura->id])}}" class="btn btn-outline-primary btn-sm">
+										<a href="{{route('config.tiposdefactura.update',['tipfacturas_id'=>$tiposfactura->id])}}" class="btn btn-outline-primary btn-sm">
 											<i class="fa fa-edit"></i>
 										</a>
-										<a href="{{route('config.tiposdefacturas.delete',['tipfacturas_ide'=>$tiposfactura->id])}}" class="btn btn-outline-danger btn-sm">
+										<a href="{{route('config.tiposdefactura.delete',['tipfacturas_ide'=>$tiposfactura->id])}}" class="btn btn-outline-danger btn-sm">
 											<i class="fa fa-trash"></i>
 										</a>
 									</div>
