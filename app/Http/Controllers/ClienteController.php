@@ -55,7 +55,7 @@ class ClienteController extends Controller
             'tlf2'=>'required',
             'movil'=>'required',
         ]);
-        $clientes = new \App\Clientes;
+        $clientes = new \App\Cliente;
         $user = \Auth::user();
         $clientes->user_id = $user->id;
         $clientes->dni = $request->input('dni');
@@ -67,7 +67,7 @@ class ClienteController extends Controller
         $clientes->telefono_oficina = $request->input('tlf2');
         $clientes->movil = $request->input('movil');
         $clientes->save();
-        return response()->json(\App\Clientes::all());
+        return response()->json(\App\Cliente::all());
     }
 
     public function updatePage($cliente_ide) {

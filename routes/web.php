@@ -117,6 +117,7 @@ Route::get('/config/cliente/update/{cliente_ide}')->uses('ClienteController@upda
 Route::post('/config/cliente/update/form')->uses('ClienteController@updateForm')->name('config.cliente.update.form')->middleware('auth');
 Route::get('/config/cliente/delete/{cliente_ide}')->uses('ClienteController@deletePage')->name('config.cliente.delete')->middleware('auth');
 Route::post('/config/cliente/delete/form')->uses('ClienteController@deleteForm')->name('config.cliente.delete.form')->middleware('auth');
+Route::post('/config/cliente/insert/form/fast')->uses('ClienteController@insertFormFast')->name('config.cliente.insert.form.fast')->middleware('auth');
 
 
 //Productos

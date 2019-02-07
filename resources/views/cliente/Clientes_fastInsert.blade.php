@@ -1,7 +1,7 @@
-{!!\Basics::modalHeader(null,'clientes','Agregar Cliente - Modo Rápido')!!}
+{!!\Basics::modalHeader(null,'cliente','Agregar Cliente - Modo Rápido')!!}
 <div class="modal-body">
 	<div id="errors-modal"></div>
-	<form action="{{route('config.clientes.insert.form.fast')}}" id="form_clientes_fast" method="POST" class="col-10 offset-1">
+	<form action="{{route('config.cliente.insert.form.fast')}}" id="form_clientes_fast" method="POST" class="col-10 offset-1">
 		@csrf
 		<div class="form-group row">
 			<label for="dni" class="col-12 col-md-3 col-form-label">Dni:</label>
