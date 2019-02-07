@@ -52,6 +52,6 @@ class CreateListProductosTable extends Migration
             $table->dropForeign(['empre_id']);
             $table->dropForeign(['impuestos_id']);
         });
-        Schema::dropIfExists('list_productos');
+        Schema::dropIfExists('productos');
     }
 }
