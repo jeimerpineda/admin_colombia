@@ -9,11 +9,11 @@ class BancoController extends Controller
 {
     public function index() {
     	$bancos = \App\Banco::orderBy('id','desc')->paginate(10);
-    	return view('bancos.index',['bancos'=>$bancos]);
+    	return view('banco.index',['bancos'=>$bancos]);
     }
 
     public function insertPage() {
-    	return view('bancos.insert');
+    	return view('banco.insert');
     }
 
     public function insertForm(Request $request) {
@@ -27,14 +27,14 @@ class BancoController extends Controller
     	$banco->descripcion = $request->input('descripcion');
     	$banco->status = $request->input('status');
     	$banco->save();
-    	return redirect()->route('config.bancos')->with([
+    	return redirect()->route('config.banco')->with([
     		'message'=>$banco->descripcion.' ha sido agregado correctamente'
     	]);
     }
 
     public function updatePage($banco_id) {
     	$banco = \App\Banco::findOrFail($banco_id);
-    	return view('bancos.update',['banco'=>$banco]);
+    	return view('banco.update',['banco'=>$banco]);
     }
 
     public function updateForm(Request $request) {
@@ -49,20 +49,20 @@ class BancoController extends Controller
     	$banco->descripcion = $request->input('descripcion');
     	$banco->status = $request->input('status');
     	$banco->save();
-    	return redirect()->route('config.bancos.update',['banco_id'=>$request->input('banco_id')])->with([
+    	return redirect()->route('config.banco.update',['banco_id'=>$request->input('banco_id')])->with([
     		'message'=>$banco->descripcion.' ha sido actualizado correctamente'
     	]);
     }
 
     public function deletePage($banco_id) {
     	$banco = \App\Banco::findOrFail($banco_id);
-    	return view('bancos.delete',['banco'=>$banco]);
+    	return view('banco.delete',['banco'=>$banco]);
     }
 
     public function deleteForm(Request $request) {
     	$banco = \App\Banco::findOrFail($request->input('banco_id'));
     	$banco->delete();
-    	return redirect()->route('config.bancos')->with([
+    	return redirect()->route('config.banco')->with([
     		'message'=>$request->input('descripcion').' ha sido eliminado correctamente'
     	]);
     }

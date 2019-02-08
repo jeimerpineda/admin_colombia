@@ -17,6 +17,6 @@ class FacturaDetail extends Model
     }
 
     public function producto() {
-    	return $this->belongsTo('App\Productos','productos_id');
+    	return $this->belongsTo('App\Producto','productos_id');
     }
 }
