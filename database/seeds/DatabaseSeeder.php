@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('24775083'),
         ]);
         DB::table('users')->insert([
-            'name' => 'Sistemas Ojos',
-            'email' =>'admin@sistemasojos.com',
+            'name' => 'Emerson Aly',
+            'email' =>'ramirezemerson1991@gmail.com@sistemasojos.com',
             'password' => bcrypt('123456'),
         ]);
         // factory(App\User::class)->times(10)->create();
